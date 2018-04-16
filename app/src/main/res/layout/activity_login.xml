@@ -2,32 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
-    android:id="@+id/activity_login_container"
-    tools:context="com.example.android.blndin.LoginActivity"
-    android:weightSum="15"
+    android:orientation="vertical"
     android:padding="10dp"
     android:paddingEnd="25dp"
-    android:paddingStart="25dp">
+    android:paddingStart="25dp"
+    android:weightSum="15"
+    tools:context="com.example.android.blndin.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:padding="15dp"
         android:text="Blndin"
-        android:textSize="30sp"
         android:textAlignment="center"
-        android:padding="15dp" />
+        android:textSize="30sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Login"
-        android:textSize="20sp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/dark_green"
+        android:textSize="20sp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,29 +37,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/login_cardbackground"
+                android:elevation="5dp"
                 android:orientation="vertical"
                 android:padding="15dp"
                 android:weightSum="12"
-                android:elevation="5dp"
                 tools:targetApi="lollipop">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="vertical"
                     android:layout_weight="4"
+                    android:orientation="vertical"
                     android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Email"
                         android:gravity="center_vertical"
+                        android:text="Email"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -82,21 +82,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="vertical"
                     android:layout_weight="4"
+                    android:orientation="vertical"
                     android:weightSum="4">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="Password"
                             android:gravity="center_vertical"
+                            android:text="Password"
                             android:textColor="@android:color/white"
                             android:textSize="18sp" />
 
@@ -119,35 +119,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="2"
                     android:gravity="right|center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:paddingTop="15dp"
                     android:paddingBottom="15dp">
-                    <Button
+
+                    <TextView
                         android:id="@+id/login_btn_forgot_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/login_btn_password_theme"
                         android:text="Forgot Password?"
-                        android:textSize="12sp"
                         android:textAllCaps="false"
-                        android:textColor="@color/colorAccent"
-                        android:padding="3dp"/>
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="2"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp">
+                    android:gravity="center">
                     <ImageView
                         android:id="@+id/login_facebook"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_facebook"
                         android:layout_marginEnd="25dp"
                         android:elevation="5dp"
+                        android:src="@drawable/ic_facebook"
                         />
                     <ImageView
                         android:id="@+id/login_twitter"
@@ -162,8 +160,8 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:gravity="center"
-        android:paddingStart="75dp"
-        android:paddingEnd="75dp">
+        android:paddingEnd="75dp"
+        android:paddingStart="75dp">
         <Button
             android:id="@+id/login_submit"
             android:layout_width="match_parent"
@@ -177,8 +175,8 @@
         android:id="@+id/login_goto_signup"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:text="Don't have an account? SIGN UP"
-        android:layout_gravity="center"
         android:textColor="@android:color/darker_gray"/>
 </LinearLayout>
