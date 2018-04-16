@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.blndin.SignUpActivity"
-    android:weightSum="15"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     android:padding="10dp"
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:weightSum="15"
+    tools:context="com.example.android.blndin.SignUpActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
         <ImageView
-            android:src="@drawable/ic_back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back_arrow" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="15dp"
             android:text="Blndin"
-            android:textSize="30sp"
             android:textAlignment="center"
-            android:padding="15dp" />
+            android:textSize="30sp" />
     </RelativeLayout>
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Sign Up"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/dark_green"
         android:textSize="20sp" />
 
     <RelativeLayout
@@ -47,23 +47,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/login_cardbackground"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="15dp"
             android:weightSum="16"
-            android:elevation="5dp"
             tools:targetApi="lollipop">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_weight="4"
+                android:orientation="vertical"
                 android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -94,21 +94,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_weight="4"
+                android:orientation="vertical"
                 android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Email"
                         android:gravity="center_vertical"
+                        android:text="Email"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -131,21 +131,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_weight="4"
+                android:orientation="vertical"
                 android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Password"
                         android:gravity="center_vertical"
+                        android:text="Password"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -168,21 +168,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_weight="4"
+                android:orientation="vertical"
                 android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Confirm Password"
                         android:gravity="center_vertical"
+                        android:text="Confirm Password"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -209,8 +209,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -219,16 +219,16 @@
             <ImageView
                 android:id="@+id/signup_facebook"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_facebook"
                 android:layout_marginEnd="25dp"
-                android:elevation="5dp" />
+                android:layout_weight="1"
+                android:elevation="5dp"
+                android:src="@drawable/ic_facebook" />
             <ImageView
                 android:id="@+id/signup_twitter"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:src="@drawable/ic_twitter"/>
         </LinearLayout>
         <Button

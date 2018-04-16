@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_wall"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_home"
+        android:title="Wall"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_mysquads"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_mysquads"
+        android:title="My Squads"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_go"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_go"
+        android:title="Let's GO!"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_hangouts"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_hangouts"
+        android:title="My Hangouts"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_extras"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_extras"
+        android:title="Extras"
+        app:showAsAction="ifRoom" />
+</menu>
