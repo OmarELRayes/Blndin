@@ -24,10 +24,14 @@
         <activity
             android:name=".ParentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustPan"
+            />
+
+         
         <activity
             android:name=".CreatePostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>

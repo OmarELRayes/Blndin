@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.android.blndin.Fragments.MyHangoutFragment;
+import com.example.android.blndin.Fragments.MySquadsFragment;
 import com.example.android.blndin.Fragments.NewsfeedFragment;
 
 public class ParentActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +27,7 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentManager manager = getSupportFragmentManager();
         switch (item.getItemId()) {
             case R.id.nav_wall:
                 manager = getSupportFragmentManager();
@@ -34,14 +37,11 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
                 manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.container, new BlankFragment()).commit();
                 break;
-
             case R.id.nav_mysquads:
-                manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.container, new BlankFragment()).commit();
+                manager.beginTransaction().replace(R.id.container, new MySquadsFragment()).commit();
                 break;
             case R.id.nav_hangouts:
-                manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.container, new BlankFragment()).commit();
+                manager.beginTransaction().replace(R.id.container, new MyHangoutFragment()).commit();
                 break;
             case R.id.nav_extras:
                 manager = getSupportFragmentManager();
