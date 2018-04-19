@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     fancy:cardCornerRadius="2dp"
     fancy:cardElevation="5dp"
     fancy:cardUseCompatPadding="true">
@@ -19,8 +19,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/kappa"
                 android:scaleType="fitXY"
+                android:src="@drawable/kappa2"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -30,9 +30,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_alignParentStart="true"
 
-                    android:layout_alignParentStart="true">
+                    android:orientation="horizontal">
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -40,23 +40,23 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Mostafa Bder"
                             android:textColor="@color/white"
                             android:textSize="17sp"
-                            android:text="Mostafa Bder"
                             />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:text="Mansoura, Egypt"
                             android:textColor="@color/white"
                             android:textSize="13sp"
-                            android:text="Mansoura, Egypt"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -65,9 +65,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -85,28 +85,28 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:background="@drawable/rounded_plus_members"
-                    android:textAlignment="center"
                     android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="+5"/>
+                    android:text="+5"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_grey"
             android:padding="7dp"
-            android:textSize="15sp"
             android:text="bla bla bla bla blabla bla bla bla blabla bla bla bla bla "
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp"
             />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:layout_gravity="end"
 
             android:orientation="horizontal"
-            android:layout_gravity="end">
+            android:padding="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,11 +146,11 @@
             <ImageView
                 android:id="@+id/like_iv"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:src="@drawable/fill_like"/>
             <View
                 android:layout_width="0.5dp"
@@ -158,11 +158,11 @@
                 android:background="@color/light_grey"/>
             <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:src="@drawable/comment"/>
             <View
                 android:layout_width="0.5dp"
@@ -170,11 +170,11 @@
                 android:background="@color/light_grey"/>
             <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:src="@drawable/hangout_h"/>
         </LinearLayout>
         <View

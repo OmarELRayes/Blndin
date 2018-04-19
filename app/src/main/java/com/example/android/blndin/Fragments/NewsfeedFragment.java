@@ -1,7 +1,9 @@
 package com.example.android.blndin.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,21 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.blndin.Adapters.NewsfeedAdapter;
+import com.example.android.blndin.CreatePostActivity;
 import com.example.android.blndin.Models.NewsfeedModel;
 import com.example.android.blndin.R;
 
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsfeedFragment extends Fragment {
+public class NewsfeedFragment extends Fragment implements FloatingActionButton.OnClickListener {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     ArrayList<NewsfeedModel> models;
     LinearLayoutManager layoutManager;
+    FloatingActionButton fab;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,7 +41,16 @@ public class NewsfeedFragment extends Fragment {
             models.add(new NewsfeedModel("Mostafa Bder",true));
         adapter=new NewsfeedAdapter(models,getActivity());
         recyclerView.setAdapter(adapter);
+
+        fab = (FloatingActionButton) v.findViewById(R.id.newsfeed_fab);
+        fab.setOnClickListener(this);
         return v;
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), CreatePostActivity.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+    }
 }

@@ -21,13 +21,17 @@
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-
-
         <activity
             android:name=".ParentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"
             />
+
+         
+        <activity
+            android:name=".CreatePostActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
