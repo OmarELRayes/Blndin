@@ -18,8 +18,10 @@ import java.util.List;
  */
 
 public class NewsfeedAdapter  extends RecyclerView.Adapter<NewsfeedAdapter.ViewHolder>{
-    ArrayList<NewsfeedModel> newsfeedItemsList;
+
+     ArrayList<NewsfeedModel> newsfeedItemsList;
      Context context;
+
     public NewsfeedAdapter(ArrayList<NewsfeedModel> newsfeedItemsList, Context context) {
         this.newsfeedItemsList = newsfeedItemsList;
         this.context = context;

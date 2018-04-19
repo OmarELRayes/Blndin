@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.android.blndin.Fragments.MyHangoutFragment;
+import com.example.android.blndin.Fragments.MySquadsFragment;
 import com.example.android.blndin.Fragments.NewsfeedFragment;
 
 public class ParentActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -26,20 +28,18 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentManager manager = getSupportFragmentManager();
         switch (item.getItemId()) {
             case R.id.nav_wall:
-                FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.container, new NewsfeedFragment()).commit();
                 break;
             case R.id.nav_go:
-
                 break;
-
             case R.id.nav_mysquads:
-
+                manager.beginTransaction().replace(R.id.container, new MySquadsFragment()).commit();
                 break;
             case R.id.nav_hangouts:
-
+                manager.beginTransaction().replace(R.id.container, new MyHangoutFragment()).commit();
                 break;
             case R.id.nav_extras:
 

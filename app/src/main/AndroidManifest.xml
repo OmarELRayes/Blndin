@@ -25,7 +25,9 @@
 
         <activity
             android:name=".ParentActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            />
     </application>
 
 </manifest>
