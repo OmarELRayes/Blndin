@@ -1,4 +1,4 @@
-package com.example.android.blndin;
+package com.example.android.blndin.Fragments;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.android.blndin.Adapters.HangoutMembersAdapter;
 import com.example.android.blndin.Models.HangoutMemberModel;
+import com.example.android.blndin.R;
 
 import java.util.ArrayList;
 

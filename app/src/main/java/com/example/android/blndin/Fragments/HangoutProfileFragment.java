@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.android.blndin.HangoutProfileDetailsFragment;
 import com.example.android.blndin.Models.MyHangoutModel;
 import com.example.android.blndin.R;
 
@@ -111,7 +110,7 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
                 case 1:
                     return new NewsfeedFragment();
                 case 2:
-                    return new NewsfeedFragment();
+                    return new HangoutProfileChatFragment();
                 default:
                     return null;
             }
