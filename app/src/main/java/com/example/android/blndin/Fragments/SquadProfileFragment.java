@@ -39,46 +39,46 @@ public class SquadProfileFragment extends Fragment {
 
         adapter = new SquadProfileMembersAdapter();
         recyclerView.setAdapter(adapter);
-        ViewPager viewPager = (ViewPager) v.findViewById(R.id.squadProfile_viewpager);
-        PagerAdapter pagerAdapter = new SquadProfileAdapter(getChildFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
-        TabLayout tableLayout = (TabLayout) v.findViewById(R.id.squadProfile_tabs);
-        tableLayout.setupWithViewPager(viewPager);
+//        ViewPager viewPager = (ViewPager) v.findViewById(R.id.squadProfile_viewpager);
+//        PagerAdapter pagerAdapter = new SquadProfileAdapter(getChildFragmentManager());
+//        viewPager.setAdapter(pagerAdapter);
+//        TabLayout tableLayout = (TabLayout) v.findViewById(R.id.squadProfile_tabs);
+//        tableLayout.setupWithViewPager(viewPager);
         return v;
     }
-    private class SquadProfileAdapter extends FragmentPagerAdapter {
-
-
-        public SquadProfileAdapter(FragmentManager fm) {
-            super(fm);
-
-        }
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if(position==0)
-            {
-                return new SquadProfileDetailsFragment();
-            }
-            else {
-                return  new SquadProfileDetailsFragment();
-            }
-
-        }
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Details";
-                case 1:
-                    return "Chat";
-                default:
-                    return "Blndin";
-            }
-        }
-    }
+//    private class SquadProfileAdapter extends FragmentPagerAdapter {
+//
+//
+//        public SquadProfileAdapter(FragmentManager fm) {
+//            super(fm);
+//
+//        }
+//        @Override
+//        public int getCount() {
+//            return 2;
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            if(position==0)
+//            {
+//                return new SquadProfileDetailsFragment();
+//            }
+//            else {
+//                return  new SquadProfileDetailsFragment();
+//            }
+//
+//        }
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            switch (position) {
+//                case 0:
+//                    return "Details";
+//                case 1:
+//                    return "Chat";
+//                default:
+//                    return "Blndin";
+//            }
+//        }
+//    }
 }

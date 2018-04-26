@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.android.blndin.Fragments.BlankFragment;
 import com.example.android.blndin.Fragments.MyHangoutFragment;
 import com.example.android.blndin.Fragments.MySquadsFragment;
 import com.example.android.blndin.Fragments.NewsfeedFragment;

@@ -1,56 +1,51 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin;
 
-
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.Selection;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.android.blndin.Adapters.MyHangoutAdapter;
 import com.example.android.blndin.Adapters.SquadProfileChatAdapter;
 import com.example.android.blndin.Models.SquadChatModel;
-import com.example.android.blndin.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SquadProfileChatFragment extends Fragment {
+
+public class ChatSquadActivity extends AppCompatActivity  {
     LinearLayout writing_layout;
     LinearLayout standing_layout;
     EditText writing_et,standing_et;
     String temp;
     TextView send;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
-    LinearLayoutManager layoutManager;
+    ListView messageview;
+    SquadProfileChatAdapter adapter;
     ArrayList<SquadChatModel> models;
+    ImageView info_iv;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_squad_profile_chat, container, false);
-        init(v);
-        return v;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat_squad);
+        init();
+        set_adapter();
+
     }
-    void init(View v)
-    {
-        models=new ArrayList<>();
-        send=(TextView)v.findViewById(R.id.tv_squad_chat_send);
-        writing_layout=(LinearLayout)v.findViewById(R.id.squadchat_writing_layout);
-        standing_layout=(LinearLayout)v.findViewById(R.id.squadchat_standing_layout);
-        writing_et=(EditText)v.findViewById(R.id.et_writing_squad);
-        standing_et=(EditText)v.findViewById(R.id.et_standing_squad);
+    void init(){
+        messageview=(ListView)findViewById(R.id.messages_view);
+        send=(TextView)findViewById(R.id.tv_squad_chat_send);
+        writing_layout=(LinearLayout)findViewById(R.id.squadchat_writing_layout);
+        standing_layout=(LinearLayout)findViewById(R.id.squadchat_standing_layout);
+        writing_et=(EditText)findViewById(R.id.et_writing_squad);
+        standing_et=(EditText)findViewById(R.id.et_standing_squad);
         standing_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -101,23 +96,28 @@ public class SquadProfileChatFragment extends Fragment {
 
             }
         });
-        recyclerView=(RecyclerView)v.findViewById(R.id.recycler_squad_profile_chat);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-        for(int i=0;i<10;i++)
-            models.add(new SquadChatModel("hollaaaaa",false));
-        adapter=new SquadProfileChatAdapter(models,getContext());
-        recyclerView.setAdapter(adapter);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                models.add(new SquadChatModel(writing_et.getText().toString(),true));
-                adapter.notifyItemInserted(models.size()-1);
-                adapter.notifyDataSetChanged();
+                adapter.add_chat_item(new SquadChatModel(writing_et.getText().toString(),true));
+                messageview.setSelection(models.size()-1);
             }
         });
     }
+    void set_adapter(){
+        models=new ArrayList<>();
+        models.add(new SquadChatModel("MADAFAKA",false,"Momen"));
+        models.add(new SquadChatModel("FAG,ME,?",true));
+        models.add(new SquadChatModel("Yes you!",false,"Momen"));
+        models.add(new SquadChatModel("STFU",true));
+        adapter=new SquadProfileChatAdapter(models,this);
+        messageview.setAdapter(adapter);
+        messageview.setSelection(models.size()-1);
+    }
 
+    public void on_info_click(View view) {
+        Intent i = new Intent(ChatSquadActivity.this, DetailsSquadActivty.class);
+        this.startActivity(i);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 }
