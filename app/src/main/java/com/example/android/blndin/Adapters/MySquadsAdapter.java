@@ -1,18 +1,14 @@
 package com.example.android.blndin.Adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.android.blndin.Fragments.SquadProfileChatFragment;
-import com.example.android.blndin.Fragments.SquadProfileFragment;
+import com.example.android.blndin.ChatSquadActivity;
 import com.example.android.blndin.R;
 
 /**
@@ -39,12 +35,13 @@ public class MySquadsAdapter extends RecyclerView.Adapter<MySquadsAdapter.ViewHo
         holder.item_squad_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new SquadProfileChatFragment();
-                FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+//                Fragment fragment = new SquadProfileChatFragment();
+//                FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+                context.startActivity(new Intent(context, ChatSquadActivity.class));
             }
         });
     }

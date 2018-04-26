@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:chatview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.blndin.ChatSquadActivity"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/fifa"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@color/super_light_grey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_grey"
+            android:text="FIFA 18"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:id="@+id/info_iv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/information"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:onClick="on_info_click"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/dark_grey"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom_layout">
+        <LinearLayout
+            android:id="@+id/squadchat_standing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:visibility="visible">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/camera"
+                android:layout_gravity="center_vertical"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_grey_text_chat"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <EditText
+                    android:id="@+id/et_standing_squad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="9"
+                    android:background="@android:color/transparent"
+                    android:hint="Write a message..."
+                    android:padding="10dp"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/gallery"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/squadchat_writing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@drawable/rounded_grey_text_chat"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/camera"
+                android:layout_gravity="center_vertical"
+                />
+            <EditText
+                android:id="@+id/et_writing_squad"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_marginStart="5dp"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="15sp"
+                android:background="@android:color/transparent"
+                />
+            <TextView
+                android:id="@+id/tv_squad_chat_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:text="Send"
+                android:gravity="center"
+                android:textColor="@color/light_green"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:id="@+id/messages_view"
+        android:divider="#fff"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fifa"
+        android:layout_above="@id/bottom_layout"
+        />
+
+
+
+    <!-- Insert customisation options here -->
+</RelativeLayout>
