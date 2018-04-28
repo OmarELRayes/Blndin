@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.android.blndin.Fragments.BlankFragment;
+import com.example.android.blndin.Fragments.InvitationsFragment;
 import com.example.android.blndin.Fragments.ExtrasFragment;
 import com.example.android.blndin.Fragments.MyHangoutFragment;
 import com.example.android.blndin.Fragments.MySquadsFragment;
@@ -37,7 +38,7 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
                 break;
             case R.id.nav_go:
                 manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.container, new BlankFragment()).commit();
+                manager.beginTransaction().replace(R.id.container, new InvitationsFragment()).commit();
                 break;
             case R.id.nav_mysquads:
                 manager.beginTransaction().replace(R.id.container, new MySquadsFragment()).commit();
