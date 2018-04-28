@@ -16,8 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.android.blndin.Fragments.NewsfeedFragment;
 import com.example.android.blndin.Fragments.UserProfileAboutFragment;
+import com.example.android.blndin.Fragments.UserProfileWallFragment;
 
 public class UserProfileActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, TabLayout.OnTabSelectedListener {
 
@@ -75,6 +75,7 @@ public class UserProfileActivity extends AppCompatActivity implements AppBarLayo
                     .scaleY(0).scaleX(0)
                     .setDuration(200)
                     .start();
+
         }
 
         if (percentage <= PERCENTAGE_TO_ANIMATE_AVATAR && !mIsAvatarShown) {
@@ -113,7 +114,7 @@ public class UserProfileActivity extends AppCompatActivity implements AppBarLayo
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new NewsfeedFragment();
+                    return new UserProfileWallFragment();
                 case 1:
                     return new UserProfileAboutFragment();
                 default:

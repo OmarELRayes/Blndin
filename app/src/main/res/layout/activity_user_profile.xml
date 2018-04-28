@@ -19,7 +19,6 @@
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|snap">
-            ​
 
             <ImageView
                 android:id="@+id/user_profile_background"
@@ -28,6 +27,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/kappa2"
                 app:layout_collapseMode="parallax" />
+
         </android.support.design.widget.CollapsingToolbarLayout>
         ​​
 
@@ -51,7 +51,6 @@
             android:paddingTop="8dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
             ​
-
             <TextView
                 android:id="@+id/user_profile_full_name"
                 android:layout_width="wrap_content"
@@ -59,7 +58,6 @@
                 android:text="Omar ELRayes"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
             ​
-
             <TextView
                 android:id="@+id/user_profile_username"
                 android:layout_width="wrap_content"

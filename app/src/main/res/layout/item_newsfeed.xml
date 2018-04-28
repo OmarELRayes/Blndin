@@ -7,61 +7,69 @@
     fancy:cardCornerRadius="2dp"
     fancy:cardElevation="5dp"
     fancy:cardUseCompatPadding="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            >
+            android:layout_height="250dp">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/kappa2"
-                />
+                android:src="@drawable/kappa2" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/transparent_gradient_topdown"
                 android:padding="10dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
 
                     android:orientation="horizontal">
+
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/item_newsfeed_avatar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/user"/>
+                        android:src="@drawable/user" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:orientation="vertical">
+
                         <TextView
+                            android:id="@+id/item_newsfeed_username"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mostafa Bder"
                             android:textColor="@color/white"
-                            android:textSize="17sp"
-                            />
+                            android:textSize="17sp" />
+
                         <TextView
+                            android:id="@+id/item_newsfeed_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="Mansoura, Egypt"
                             android:textColor="@color/white"
-                            android:textSize="13sp"
-                            />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,13 +81,14 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/user"
-                    />
+                    android:src="@drawable/user" />
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
-                    android:src="@drawable/user"/>
+                    android:src="@drawable/user" />
+
                 <TextView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -91,14 +100,14 @@
                     android:textColor="@color/white" />
             </LinearLayout>
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="7dp"
             android:text="bla bla bla bla blabla bla bla bla blabla bla bla bla bla "
             android:textColor="@color/dark_grey"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -107,42 +116,44 @@
 
             android:orientation="horizontal"
             android:padding="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Likes"
-                />
+                android:text="Likes" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="20"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Comments"
-                />
+                android:text="Comments" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            android:background="@color/light_grey"
-            />
+            android:background="@color/light_grey" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/like_iv"
                 android:layout_width="0dp"
@@ -151,11 +162,13 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/fill_like"/>
+                android:src="@drawable/fill_like" />
+
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="match_parent"
-                android:background="@color/light_grey"/>
+                android:background="@color/light_grey" />
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -163,25 +176,34 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/comment"/>
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@color/light_grey"/>
-            <ImageView
+                android:src="@drawable/comment" />
+
+            <LinearLayout
+                android:id="@+id/item_newsfeed_hangout_span"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/hangout_h"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/light_grey" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/hangout_h" />
+            </LinearLayout>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/light_grey"
-            />
+            android:background="@color/light_grey" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
