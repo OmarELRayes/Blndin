@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.android.blndin.Fragments.BlankFragment;
+import com.example.android.blndin.Fragments.ExtrasFragment;
 import com.example.android.blndin.Fragments.MyHangoutFragment;
 import com.example.android.blndin.Fragments.MySquadsFragment;
 import com.example.android.blndin.Fragments.NewsfeedFragment;
@@ -46,7 +47,7 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
                 break;
             case R.id.nav_extras:
                 manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.container, new BlankFragment()).commit();
+                manager.beginTransaction().replace(R.id.container, new ExtrasFragment()).commit();
                 break;
         }
         return true;
