@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import com.example.android.blndin.R;
 import com.example.android.blndin.UserProfileActivity;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -46,7 +48,6 @@ public class ExtrasFragment extends Fragment {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : Open profile
                 Intent intent = new Intent(getActivity(), UserProfileActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
@@ -63,7 +64,12 @@ public class ExtrasFragment extends Fragment {
         invites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : Open Invites
+                InvitationsFragment fragment = new InvitationsFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(TAG)
+                        .add(R.id.container, fragment)
+                        .commit();
             }
         });
 
