@@ -30,11 +30,15 @@
         <activity
             android:name=".CreatePostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ChatSquadActivity"
+        <activity
+            android:name=".ChatSquadActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".DetailsSquadActivty"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".UserProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-        <activity android:name=".DetailsSquadActivty"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
-
     </application>
 
 </manifest>

@@ -1,16 +1,14 @@
 package com.example.android.blndin;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,7 +16,9 @@ import com.example.android.blndin.Adapters.SquadProfileChatAdapter;
 import com.example.android.blndin.Models.SquadChatModel;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 
 public class ChatSquadActivity extends AppCompatActivity  {
@@ -57,8 +57,8 @@ public class ChatSquadActivity extends AppCompatActivity  {
                 if(s.length()!=0)
                 {
                     temp=s.toString();
-                    writing_layout.setVisibility(View.VISIBLE);
-                    standing_layout.setVisibility(View.GONE);
+                    writing_layout.setVisibility(VISIBLE);
+                    standing_layout.setVisibility(GONE);
                     writing_et.setText(temp);
                    // Selection.setSelection((Editable) writing_et.getText(),writing_et.getSelectionEnd());
                     writing_et.requestFocus();
@@ -83,8 +83,8 @@ public class ChatSquadActivity extends AppCompatActivity  {
                 if(s.length()==0)
                 {
                     temp="";
-                    writing_layout.setVisibility(View.GONE);
-                    standing_layout.setVisibility(View.VISIBLE);
+                    writing_layout.setVisibility(GONE);
+                    standing_layout.setVisibility(VISIBLE);
                     standing_et.setText(temp);
                    // Selection.setSelection((Editable) standing_et.getText(),standing_et.getSelectionStart());
                     standing_et.requestFocus();
@@ -101,6 +101,9 @@ public class ChatSquadActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 adapter.add_chat_item(new SquadChatModel(writing_et.getText().toString(),true));
                 messageview.setSelection(models.size()-1);
+                writing_et.setText("");
+                writing_layout.setVisibility(GONE);
+                standing_layout.setVisibility(VISIBLE);
             }
         });
     }

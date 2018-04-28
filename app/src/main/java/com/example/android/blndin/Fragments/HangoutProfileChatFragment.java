@@ -20,6 +20,9 @@ import com.example.android.blndin.R;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -66,8 +69,8 @@ public class HangoutProfileChatFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
                     temp = s.toString();
-                    writing_layout.setVisibility(View.VISIBLE);
-                    standing_layout.setVisibility(View.GONE);
+                    writing_layout.setVisibility(VISIBLE);
+                    standing_layout.setVisibility(GONE);
                     writing_et.setText(temp);
                     // Selection.setSelection((Editable) writing_et.getText(),writing_et.getSelectionEnd());
                     writing_et.requestFocus();
@@ -91,8 +94,8 @@ public class HangoutProfileChatFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
                     temp = "";
-                    writing_layout.setVisibility(View.GONE);
-                    standing_layout.setVisibility(View.VISIBLE);
+                    writing_layout.setVisibility(GONE);
+                    standing_layout.setVisibility(VISIBLE);
                     standing_et.setText(temp);
                     // Selection.setSelection((Editable) standing_et.getText(),standing_et.getSelectionStart());
                     standing_et.requestFocus();
@@ -109,6 +112,9 @@ public class HangoutProfileChatFragment extends Fragment {
             public void onClick(View v) {
                 adapter.add_chat_item(new SquadChatModel(writing_et.getText().toString(), true));
                 messageview.setSelection(models.size() - 1);
+                writing_et.setText("");
+                writing_layout.setVisibility(GONE);
+                standing_layout.setVisibility(VISIBLE);
             }
         });
     }
