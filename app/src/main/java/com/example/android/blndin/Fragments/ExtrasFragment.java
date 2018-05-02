@@ -25,6 +25,7 @@ public class ExtrasFragment extends Fragment {
     RelativeLayout invites;
     RelativeLayout settings;
     RelativeLayout logout;
+    RelativeLayout places;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +42,7 @@ public class ExtrasFragment extends Fragment {
         invites = (RelativeLayout) view.findViewById(R.id.extras_invites);
         settings = (RelativeLayout) view.findViewById(R.id.extras_settings);
         logout = (RelativeLayout) view.findViewById(R.id.extras_logout);
+        places = (RelativeLayout) view.findViewById(R.id.extras_places);
         setNav();
     }
 
@@ -57,7 +59,12 @@ public class ExtrasFragment extends Fragment {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : Open Notifications
+                NotificationFragment fragment = new NotificationFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(TAG)
+                        .add(R.id.container, fragment)
+                        .commit();
             }
         });
 
@@ -65,6 +72,18 @@ public class ExtrasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 InvitationsFragment fragment = new InvitationsFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(TAG)
+                        .add(R.id.container, fragment)
+                        .commit();
+            }
+        });
+
+        places.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlacesFragment fragment = new PlacesFragment();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(TAG)
