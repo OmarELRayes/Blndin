@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
     android:weightSum="15"
-    tools:context="com.example.android.blndin.SignUpActivity">
+    tools:context=".Features.SignUp.SignUpActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -66,11 +65,12 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/signup_name_text"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Username"
+                        android:text="Name"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -83,7 +83,7 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/signup_username"
+                    android:id="@+id/signup_name"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
@@ -194,7 +194,7 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/singup_confirm_password"
+                    android:id="@+id/signup_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
