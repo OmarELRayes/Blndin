@@ -12,5 +12,7 @@ public interface LoginView {
 
     void loginClick();
 
+    void fbLoginSuccess(String message);
+
 
 }

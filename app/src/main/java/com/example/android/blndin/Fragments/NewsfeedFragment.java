@@ -37,16 +37,7 @@ public class NewsfeedFragment extends Fragment implements FloatingActionButton.O
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_newsfeed, container, false);
-        /*recyclerView=(RecyclerView)v.findViewById(R.id.recycler_newsfeed);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        models=new ArrayList<>();
-        for(int i=0;i<5;i++)
-            models.add(new NewsfeedModel("Mostafa Bder",true));
-        adapter=new NewsfeedAdapter(models,getActivity());
-        recyclerView.setAdapter(adapter);
-        */
+
 
         fab = (FloatingActionButton) v.findViewById(R.id.newsfeed_fab);
         fab.setOnClickListener(this);
