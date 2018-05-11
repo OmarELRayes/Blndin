@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_container"
     android:layout_width="match_parent"
@@ -11,7 +10,7 @@
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
     android:weightSum="15"
-    tools:context="com.example.android.blndin.LoginActivity">
+    tools:context=".Features.Login.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -28,32 +27,37 @@
         android:text="Login"
         android:textColor="@color/dark_green"
         android:textSize="20sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
         android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_cardbackground"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="12"
+            tools:targetApi="lollipop">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/login_cardbackground"
-                android:elevation="5dp"
+                android:layout_height="0dp"
+                android:layout_weight="4"
                 android:orientation="vertical"
-                android:padding="15dp"
-                android:weightSum="12"
-                tools:targetApi="lollipop">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:orientation="vertical"
-                    android:weightSum="4">
+                android:weightSum="4">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -71,90 +75,97 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/login_et_email"
+                    android:id="@+id/login_et_username"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2"
                     android:background="@drawable/login_edittext_theme"
-                    android:padding="3dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:orientation="vertical"
-                    android:weightSum="4">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="2"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="Password"
-                            android:textColor="@android:color/white"
-                            android:textSize="18sp" />
+                    android:padding="3dp" />
+            </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_password" />
-                    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:weightSum="4">
 
-                    <EditText
-                        android:id="@+id/login_et_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/login_edittext_theme"
-                        android:padding="3dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="2"
-                    android:gravity="right|center_vertical"
-                    android:paddingBottom="15dp">
-
-                    <TextView
-                        android:id="@+id/login_btn_forgot_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Forgot Password?"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
-                    android:gravity="center">
-                    <ImageView
-                        android:id="@+id/login_facebook"
-                        android:layout_width="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="25dp"
-                        android:elevation="5dp"
-                        android:src="@drawable/ic_facebook"
-                        />
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Password"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
                     <ImageView
-                        android:id="@+id/login_twitter"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_twitter"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_password" />
                 </LinearLayout>
+
+                <EditText
+                    android:id="@+id/login_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/login_edittext_theme"
+                    android:padding="3dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:gravity="right|center_vertical"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/login_btn_forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password?"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/login_facebook"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="25dp"
+                    android:elevation="5dp"
+                    android:src="@drawable/ic_facebook" />
+
+                <ImageView
+                    android:id="@+id/login_twitter"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_twitter" />
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

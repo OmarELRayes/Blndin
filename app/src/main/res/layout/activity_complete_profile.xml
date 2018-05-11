@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,32 +9,15 @@
     android:padding="10dp"
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
-    android:weightSum="15"
-    tools:context=".Features.SignUp.SignUpActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back_arrow" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="15dp"
-            android:text="Blndin"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-    </RelativeLayout>
+    tools:context="com.example.android.blndin.CompleteProfileActivity">
+
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Sign Up"
+        android:gravity="center"
+        android:text="Complete Profile"
         android:textColor="@color/dark_green"
         android:textSize="20sp" />
 
@@ -42,6 +26,7 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:padding="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,14 +34,43 @@
             android:elevation="5dp"
             android:orientation="vertical"
             android:padding="15dp"
-            android:weightSum="16"
+            android:weightSum="13"
             tools:targetApi="lollipop">
+
+            <RelativeLayout
+                android:id="@+id/complete_profile_add_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/complete_profile_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/user"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="2dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_above="@id/complete_profile_image"
+                    android:layout_alignBottom="@id/complete_profile_image"
+                    android:layout_alignRight="@id/complete_profile_image"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_add"
+                    app:civ_fill_color="@color/light_green" />
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 android:orientation="vertical"
                 android:weightSum="4">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -65,180 +79,171 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/signup_name_text"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:text="Name"
+                        android:text="First Name"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_user" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Last Name"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/signup_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/login_edittext_theme"
-                    android:padding="3dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="vertical"
-                android:weightSum="4">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
                     android:orientation="horizontal">
-                    <TextView
+
+                    <EditText
+                        android:id="@+id/complete_profile_first_name"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Email"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/login_edittext_theme"
+                        android:padding="3dp" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_email" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/complete_profile_last_name"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/login_edittext_theme"
+                        android:padding="3dp" />
                 </LinearLayout>
-
-                <EditText
-                    android:id="@+id/signup_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/login_edittext_theme"
-                    android:padding="3dp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 android:orientation="vertical"
                 android:weightSum="4">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Password"
+                        android:text="Gender"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_password" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/signup_password"
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
-                    android:background="@drawable/login_edittext_theme"
-                    android:padding="3dp"/>
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/complete_profile_male_radio_input"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="3"
+                        android:buttonTint="@color/transparent_bg"
+                        android:text="Male"
+                        android:textColor="@color/white" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/complete_profile_female_radio_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:buttonTint="@color/transparent_bg"
+                        android:text="Female"
+                        android:textColor="@color/white" />
+                </RadioGroup>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 android:orientation="vertical"
                 android:weightSum="4">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Confirm Password"
+                        android:text="Phone"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_password" />
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/signup_confirm_password"
+                    android:id="@+id/complete_profile_phone"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2"
                     android:background="@drawable/login_edittext_theme"
-                    android:padding="3dp"/>
+                    android:inputType="phone"
+                    android:padding="3dp" />
             </LinearLayout>
-
         </LinearLayout>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="20dp">
-            <ImageView
-                android:id="@+id/signup_facebook"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="25dp"
-                android:layout_weight="1"
-                android:elevation="5dp"
-                android:src="@drawable/ic_facebook" />
-            <ImageView
-                android:id="@+id/signup_twitter"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_twitter"/>
-        </LinearLayout>
+
         <Button
-            android:id="@+id/signup_submit"
+            android:id="@+id/complete_profile_submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/login_btn_login"
-            android:text="Sign up"
+            android:text="Complete!"
             android:textColor="@android:color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

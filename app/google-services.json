@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "600305797247",
+    "firebase_url": "https://blndin-99bb1.firebaseio.com",
+    "project_id": "blndin-99bb1",
+    "storage_bucket": "blndin-99bb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600305797247:android:95298edf212d8d21",
+        "android_client_info": {
+          "package_name": "com.example.android.blndin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600305797247-0athidnjsl0a13h44hvh2md6ph7vlvc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.blndin",
+            "certificate_hash": "613b7d0451deb3ce5a417acd7198c3a1d0847cbb"
+          }
+        },
+        {
+          "client_id": "600305797247-s9rqu7r4mdl1jne20eur5u883ob2hgbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7p69qnkKbG3-cJ6IKM_i7zAdwN07CgOU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600305797247-s9rqu7r4mdl1jne20eur5u883ob2hgbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
