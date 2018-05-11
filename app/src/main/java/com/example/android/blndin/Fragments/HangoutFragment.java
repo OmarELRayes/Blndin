@@ -73,7 +73,6 @@ public class HangoutFragment extends Fragment implements OnMapReadyCallback,Goog
     public void onMapReady(GoogleMap googleMap) {
         mMap=googleMap;
 
-
     }
 
     @Override
