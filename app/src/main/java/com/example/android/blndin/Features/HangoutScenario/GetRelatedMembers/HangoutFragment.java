@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -43,6 +44,10 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
     @BindView(R.id.btn_hangout_lets_go) FancyButton lets_go_btn;
     @BindView(R.id.proceed_layout_recyclerView)RecyclerView membersRecyclerView;
     @BindView(R.id.spinner_activities)AwesomeSpinner spinner;
+    @BindView(R.id.proceed_layout_btn)FancyButton procced_btn;
+    @BindView(R.id.et_hangout_sub_activity)EditText sub_activity_et;
+    @BindView(R.id.pin_location_layout)RelativeLayout pin_layout;
+    @BindView(R.id.pin_location_btn)ImageView pin_btn;
     RelatedMembersPresenter presenter;
     //View components
     View v;
@@ -74,8 +79,6 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
     }
 
      void init(){
-
-
          mCustomMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_custom_marker, null);
          mMarkerImageView = (ImageView) mCustomMarkerView.findViewById(R.id.marker_user_image);
          layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -86,17 +89,35 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
          lets_go_btn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                if(!sub_activity_et.getText().toString().trim().isEmpty())
                  presenter.getRelatedMembers("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangoutLayout,mCustomMarkerView,mMarkerImageView);
+                 else
+                     Toast.makeText(getActivity(),"Enter Specific activity",Toast.LENGTH_SHORT).show();
 
              }
          });
-         presenter=new RelatedMembersPresenterImp(this,getActivity(),proceedLayout,adapter);
+         procced_btn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 pin_layout.setVisibility(View.VISIBLE);
+                 presenter.slideDown(proceedLayout);
+             }
+         });
+         pin_btn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 pin_layout.setVisibility(View.INVISIBLE);
+                 presenter.getCenterLocation();
+                 presenter.fillHangoutDialog(String.valueOf(spinner.getSelectedItemPosition()),sub_activity_et.getText().toString());
+             }
+         });
+         presenter=new RelatedMembersPresenterImp(this,getActivity(),proceedLayout,adapter,members);
      }
 
 
     @Override
-    public void successfulResponseRelatedMembers(ArrayList<User> members) {
-
+    public void successfulResponseRelatedMembers(String status, String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,6 +126,8 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
            spinner_list.add(model.getTitle());
          ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinner_list);
          spinner.setAdapter(categoriesAdapter);
+        if(spinner_list.size()>0)
+            spinner.setSelection(0);
         Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
     }
 
@@ -116,6 +139,18 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
     @Override
     public View findViewById() {
         return  getActivity().findViewById(android.R.id.content);
+    }
+
+    @Override
+    public void successfulResponseCreateHangout(String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void successfullResponseCheckHangout(String status) {
+        if(status.equals("0"))
+            Toast.makeText(getActivity(),"no one accepted yet",Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getActivity(),"accepted",Toast.LENGTH_SHORT).show();
     }
 
 

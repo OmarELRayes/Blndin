@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
 public interface RelatedMembersView {
 
-    void successfulResponseRelatedMembers(ArrayList<User> members);
+    void successfulResponseRelatedMembers(String status,String message);
     void successfulResponseActivites(ActivitiesResponse activitiesResponse);
     void failureResponse(String status,String message);
     View findViewById();
+    void successfulResponseCreateHangout(String message);
+    void successfullResponseCheckHangout(String status);
 }
