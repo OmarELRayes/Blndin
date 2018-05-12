@@ -1,6 +1,7 @@
 package com.example.android.blndin.Retrofit;
 
 
+import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfilePostsResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
@@ -15,6 +16,8 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by LeGenÐ on 5/11/2018.
@@ -54,9 +57,11 @@ public interface ApiInterface {
     @POST("hangouts/show")
     Call<HangoutProfileDetailsResponse> getHangoutDetails(@Field("hangout_id") String id, @Field("token") String token);
 
-
-
     @FormUrlEncoded
     @POST("hangouts/status")
     Call<CheckHangoutResponse>checkHangout(@Field("token")String token,@Field("hangout_id")String hangout_id);
+
+    @FormUrlEncoded
+    @POST("hangouts/posts")
+    Call<HangoutProfilePostsResponse>getHangoutPost(@Field("token")String token, @Field("hangout_id")String hangout_id, @Query("page") String page);
 }

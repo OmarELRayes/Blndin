@@ -37,7 +37,7 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/item_newsfeed_avatar"
+                        android:id="@+id/item_hangout_avatar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/user" />
@@ -102,6 +102,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/content_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="7dp"
@@ -118,6 +119,7 @@
             android:padding="5dp">
 
             <TextView
+                android:id="@+id/likes_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50"
@@ -130,6 +132,7 @@
                 android:text="Likes" />
 
             <TextView
+                android:id="@+id/comments_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

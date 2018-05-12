@@ -105,8 +105,6 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
     LocationManager mLocationManager;
     UserModel user;
      Dialog dialog;
-    Marker hangoutLocationMarker;
-    Boolean setMembersDone=false;
     LatLng centerLatlng;
 
     public HangoutPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter, ArrayList<UserModel>addedMembers)
