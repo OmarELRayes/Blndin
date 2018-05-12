@@ -71,7 +71,7 @@ public class LoginPresenterImp implements LoginPresenter {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     //TODO : Save in SharedPreferences
-                    view.loginSuccessful(response.body().getStatus().toString());
+                    view.loginSuccessful(response.body().getStatus());
                 }
 
                 @Override

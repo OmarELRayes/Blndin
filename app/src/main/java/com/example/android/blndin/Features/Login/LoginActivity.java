@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.android.blndin.Features.Login.Presenter.LoginPresenter;
 import com.example.android.blndin.Features.Login.View.LoginView;
 import com.example.android.blndin.Features.SignUp.SignUpActivity;
+import com.example.android.blndin.ParentActivity;
 import com.example.android.blndin.R;
 import com.facebook.CallbackManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,11 +65,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = et_username.getText().toString();
-                String password = et_password.getText().toString();
-                presenter.regularLogin(username, password);
-                /*Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                startActivity(intent);*/
+//                String username = et_username.getText().toString();
+//                String password = et_password.getText().toString();
+//                presenter.regularLogin(username, password);
+                Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                startActivity(intent);
             }
         });
         facebook.setOnClickListener(new View.OnClickListener() {
