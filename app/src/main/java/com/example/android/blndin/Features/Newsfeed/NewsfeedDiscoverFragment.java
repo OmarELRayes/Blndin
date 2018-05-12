@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.Newsfeed;
 
 
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsfeedWallFragment extends Fragment {
+public class NewsfeedDiscoverFragment extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -30,13 +30,14 @@ public class NewsfeedWallFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newsfeed_wall, container, false);
+        return inflater.inflate(R.layout.fragment_newsfeed_discover, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = (RecyclerView) view.findViewById(R.id.newsfeed_wall_recyclerView);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.newsfeed_discover_recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);

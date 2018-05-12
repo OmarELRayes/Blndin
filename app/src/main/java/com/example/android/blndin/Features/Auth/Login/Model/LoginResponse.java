@@ -35,7 +35,7 @@ public class LoginResponse {
     }
 
     public String getToken() {
-        return payload.getToken();
+        return getPayload().getToken();
     }
 
     private class Payload {

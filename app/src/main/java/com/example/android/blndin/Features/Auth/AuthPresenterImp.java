@@ -146,7 +146,8 @@ public class AuthPresenterImp implements AuthPresenter {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(this.toString(), "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            view.success(user.getEmail());
+                            Log.d("authss", "onComplete: " + user.getUid());
+                            ;
                             firebaseLogin(user.getUid(), user.getDisplayName(), user.getEmail());
                         } else {
                             // If sign in fails, display a message to the user.

@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.blndin.Features.Newsfeed.NewsfeedDiscoverFragment">
+    tools:context="com.example.android.blndin.Features.Newsfeed.NewsfeedWallFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/newsfeed_discover_recyclerView"
+        android:id="@+id/hangoutProfilePosts_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

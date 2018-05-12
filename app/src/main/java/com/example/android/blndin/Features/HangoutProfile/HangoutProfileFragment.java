@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.HangoutProfile;
 
 
 import android.os.Build;
@@ -108,7 +108,7 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
                 case 0:
                     return new HangoutProfileDetailsFragment();
                 case 1:
-                    return new NewsfeedFragment();
+                    return new HangoutProfilePostsFragment();
                 case 2:
                     return new HangoutProfileChatFragment();
                 default:

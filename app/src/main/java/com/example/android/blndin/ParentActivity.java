@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.android.blndin.Fragments.ExtrasFragment;
 import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.HangoutFragment;
+import com.example.android.blndin.Features.Newsfeed.NewsfeedFragment;
+import com.example.android.blndin.Fragments.ExtrasFragment;
 import com.example.android.blndin.Fragments.MyHangoutFragment;
 import com.example.android.blndin.Fragments.MySquadsFragment;
-import com.example.android.blndin.Fragments.NewsfeedFragment;
 
 public class ParentActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
