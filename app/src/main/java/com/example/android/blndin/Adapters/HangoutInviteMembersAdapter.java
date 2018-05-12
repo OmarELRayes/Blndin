@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.blndin.Models.HangoutInviteMemberModel;
+import com.example.android.blndin.Models.UserModel;
 import com.example.android.blndin.R;
 
 import java.util.List;
@@ -21,10 +21,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HangoutInviteMembersAdapter extends RecyclerView.Adapter<HangoutInviteMembersAdapter.ViewHolder> {
     Context context;
-    List<HangoutInviteMemberModel> members;
+    List<UserModel> members;
 
 
-    public HangoutInviteMembersAdapter(Context context, List<HangoutInviteMemberModel> members) {
+    public HangoutInviteMembersAdapter(Context context, List<UserModel> members) {
         this.context = context;
         this.members = members;
     }
@@ -39,7 +39,7 @@ public class HangoutInviteMembersAdapter extends RecyclerView.Adapter<HangoutInv
     @Override
     public void onBindViewHolder(HangoutInviteMembersAdapter.ViewHolder holder, final int position) {
 
-        holder.userName.setText(members.get(position).getName());
+        holder.userName.setText(members.get(position).getUsername());
         holder.avatar.setImageResource(R.drawable.user);
         holder.close.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -61,6 +61,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                String username = et_username.getText().toString();
+//                String password = et_password.getText().toString();
+//                presenter.regularLogin(username, password);
+                Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                startActivity(intent);
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
                 ((LoginPresenter) presenter).regularLogin(username, password);
