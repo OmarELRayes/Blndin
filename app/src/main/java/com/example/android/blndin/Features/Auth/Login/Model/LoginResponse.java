@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.Login.Model;
+package com.example.android.blndin.Features.Auth.Login.Model;
 
 /**
  * Created by LeGenÐ on 5/11/2018.
@@ -8,6 +8,7 @@ public class LoginResponse {
 
     String status;
     Payload payload;
+    String message;
 
     public String getStatus() {
         return status;
@@ -23,6 +24,18 @@ public class LoginResponse {
 
     public void setPayload(Payload payload) {
         this.payload = payload;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getToken() {
+        return payload.getToken();
     }
 
     private class Payload {

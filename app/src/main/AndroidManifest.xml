@@ -37,7 +37,7 @@
         </activity>
 
         <activity
-            android:name=".Features.Login.LoginActivity"
+            android:name=".Features.Auth.Login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Features.SignUp.SignUpActivity"
+            android:name=".Features.Auth.SignUp.SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".ParentActivity"

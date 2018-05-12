@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.android.blndin.Fragments.BlankFragment;
 import com.example.android.blndin.Fragments.ExtrasFragment;
 import com.example.android.blndin.Fragments.HangoutFragment;
 import com.example.android.blndin.Fragments.MyHangoutFragment;
@@ -18,6 +17,7 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
 
     BottomNavigationView navigation;
     FragmentManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

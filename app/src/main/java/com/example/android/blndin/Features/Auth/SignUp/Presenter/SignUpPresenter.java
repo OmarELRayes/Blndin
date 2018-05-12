@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.SignUp.Presenter;
+package com.example.android.blndin.Features.Auth.SignUp.Presenter;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -12,7 +12,4 @@ public interface SignUpPresenter {
 
     void regularSignUp(String name, String email, String password, String cPassword);
 
-    void fbSignUp();
-
-    void twSignUp();
 }

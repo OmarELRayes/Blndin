@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.Login;
+package com.example.android.blndin.Features.Auth.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.blndin.Features.Login.Presenter.LoginPresenter;
-import com.example.android.blndin.Features.Login.View.LoginView;
-import com.example.android.blndin.Features.SignUp.SignUpActivity;
+import com.example.android.blndin.Features.Auth.AuthPresenter;
+import com.example.android.blndin.Features.Auth.Login.Presenter.LoginPresenter;
+import com.example.android.blndin.Features.Auth.Login.View.LoginView;
+import com.example.android.blndin.Features.Auth.SignUp.SignUpActivity;
+import com.example.android.blndin.ParentActivity;
 import com.example.android.blndin.R;
-import com.facebook.CallbackManager;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,10 +34,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     ImageView facebook;
     @BindView(R.id.login_twitter)
     ImageView twitter;
-    LoginPresenter presenter;
-    CallbackManager mCallbackManager;
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    AuthPresenter presenter;
+
 
     @Override
     protected void onStart() {
@@ -66,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             public void onClick(View v) {
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
-                presenter.regularLogin(username, password);
+                ((LoginPresenter) presenter).regularLogin(username, password);
                 /*Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
                 startActivity(intent);*/
             }
@@ -89,22 +86,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.onResume();
+        ((LoginPresenterImp) presenter).onResume(this);
     }
 
     @Override
     public void loginSuccessful(String status) {
         Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void loginFailed() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void loginClick() {
-
+        Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -114,8 +104,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void fbLoginSuccess(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void success(String message) {
+        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(LoginActivity.this, ParentActivity.class));
     }
 
+    @Override
+    public void failure(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }

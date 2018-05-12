@@ -1,7 +1,8 @@
 package com.example.android.blndin.Retrofit;
 
-import com.example.android.blndin.Features.Login.Model.LoginResponse;
-import com.example.android.blndin.Features.SignUp.Model.SignUpResponse;
+import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
+import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
+import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,8 +16,8 @@ import retrofit2.http.POST;
 public interface ApiInterface {
 
     @FormUrlEncoded
-    @POST("auth/register/facebook")
-    Call<LoginResponse> fbLogin(@Field("fb_id") String fbid, @Field("name") String name, @Field("email") String email);
+    @POST("auth/register/firebase")
+    Call<LoginResponse> firebaseLogin(@Field("auth_id") String fbid, @Field("name") String name, @Field("email") String email);
 
     @FormUrlEncoded
     @POST("auth/register/regular")
@@ -25,5 +26,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("auth/login/regular")
     Call<LoginResponse> regularLogin(@Field("username") String username, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("settings/set-username")
+    Call<SetUserNameResponse> setUserName(@Field("username") String username, @Field("token") String token);
+
+
 
 }
