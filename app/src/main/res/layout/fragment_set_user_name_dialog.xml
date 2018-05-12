@@ -1,10 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.example.android.blndin.Features.SignUp.SetUserName.SetUserNameDialogFragment">
+    tools:context=".Features.Auth.SignUp.SetUserName.SetUserNameDialogFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -21,10 +27,11 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/set_username_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/login_edittext_theme"
             android:hint="eg. @ELRayes"
             android:textColor="@color/light_green" />
@@ -34,8 +41,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="5dp"
         android:text="This can't be changed in the future"
         android:textColor="@color/light_grey" />
 
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/set_username_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/light_green"
+            fancy:fb_focusColor="@color/dark_green"
+            fancy:fb_radius="5dp"
+            fancy:fb_text="Submit"
+            fancy:fb_textColor="#FFFFFF">
+
+        </mehdi.sakout.fancybuttons.FancyButton>
+
+    </LinearLayout>
 </LinearLayout>

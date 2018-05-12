@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
 
 import com.example.android.blndin.R;
 import com.example.android.blndin.UserProfileActivity;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 import static android.content.ContentValues.TAG;
 
@@ -102,7 +104,9 @@ public class ExtrasFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : Logout from app
+                FirebaseAuth.getInstance().signOut();
+                SharedPreferencesHelper.clearAllSavedSharedData(getContext());
+                getActivity().finish();
             }
         });
     }

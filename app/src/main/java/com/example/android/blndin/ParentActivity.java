@@ -17,6 +17,7 @@ public class ParentActivity extends AppCompatActivity implements BottomNavigatio
 
     BottomNavigationView navigation;
     FragmentManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

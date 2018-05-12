@@ -9,7 +9,7 @@
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
     android:weightSum="15"
-    tools:context=".Features.SignUp.SignUpActivity">
+    tools:context=".Features.Auth.SignUp.SignUpActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

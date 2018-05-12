@@ -10,7 +10,7 @@
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
     android:weightSum="15"
-    tools:context=".Features.Login.LoginActivity">
+    tools:context=".Features.Auth.Login.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
