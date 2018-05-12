@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,16 +23,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
+import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CheckHangoutResponse;
+import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CreateHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
 import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Presenter.RelatedMembersPresenter;
 import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.View.RelatedMembersView;
@@ -53,16 +60,23 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
+import com.twitter.sdk.android.core.models.User;
 
 
+import org.w3c.dom.Text;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import android.os.Handler;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -92,12 +106,19 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
     private MultiplePermissionsListener allPermissionsListener;
     Location lastLocation;
     LocationManager mLocationManager;
+    UserModel user;
+     Dialog dialog;
+    Marker hangoutLocationMarker;
+    Boolean setMembersDone=false;
+    LatLng centerLatlng;
 
-    public RelatedMembersPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter) {
+    public RelatedMembersPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter,ArrayList<UserModel>addedMembers)
+    {
         this.relatedMembersView = relatedMembersView;
         this.context = context;
         this.proceedLayout = proceedLayout;
         this.adapter = adapter;
+        this.addedMembers=addedMembers;
     }
 
     @Override
@@ -181,6 +202,7 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
                 10, mLocationListener);
 
     }
+
     private void getFuckingDamnLocation(){
         SingleShotLocationProvider.requestSingleUpdate(context,
                 new SingleShotLocationProvider.LocationCallback() {
@@ -189,6 +211,8 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
                     }
                 });
     }
+
+
     @Override
     public void buildApiClient() {
         buildGoogleApiClient();
@@ -207,6 +231,154 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
     }
 
     @Override
+    public void fillHangoutDialog(final String activity_id, final String sub_activity)
+    {
+         dialog = new Dialog(context);
+        dialog.setContentView(R.layout.fill_hangout_dialog);
+        final EditText hangout_title=(EditText)dialog.findViewById(R.id.hangout_title_dialog);
+        final EditText hangout_message=(EditText)dialog.findViewById(R.id.hangout_message_dialog);
+        FancyButton send_invited=(FancyButton)dialog.findViewById(R.id.btn_hangout_send_invites);
+        FancyButton cancel=(FancyButton)dialog.findViewById(R.id.btn_hangout_cancel);
+        send_invited.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String temp=validate(hangout_title,hangout_message);
+                if(temp.equals("ok"))
+                {
+                    //request create hangout
+                    //serialize users array
+                    try {
+                        createHangout("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangout_title.getText().toString(),hangout_message.getText().toString()
+                                ,activities.get(Integer.valueOf(activity_id)).getId(),sub_activity,list_to_string(addedMembers),getAddress(centerLatlng),String.valueOf(centerLatlng.latitude),String.valueOf(centerLatlng.longitude));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                else Toast.makeText(context,temp,Toast.LENGTH_SHORT).show();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.show();
+    }
+
+    @Override
+    public void createHangout(final String token, String title, String message, String activity_id, String sub_activity, String users,String address,String lat,String lng) {
+        Log.d("title",title);
+        Log.d("message",message);
+        Log.d("act_id",activity_id);
+        Log.d("sub_act",sub_activity);
+        Log.d("users",users);
+        Log.d("address",address);
+        Log.d("lat,lng",lat+","+lng);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<CreateHangoutResponse> call = apiInterface.createHangout(token,title,activity_id,sub_activity,users,message,address,lat,lng);
+        call.enqueue(new Callback<CreateHangoutResponse>() {
+            @Override
+            public void onResponse(Call<CreateHangoutResponse> call, Response<CreateHangoutResponse> response) {
+                if(response.body()!=null)
+                {
+                    if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
+                    {
+                        dialog.dismiss();
+                        relatedMembersView.successfulResponseCreateHangout(response.body().getPayload().getMessage());
+                        Log.d("hangout_id",response.body().getPayload().getHangout_id());
+                        checkHangout(token,response.body().getPayload().getHangout_id());
+                    }
+                    else
+                        relatedMembersView.failureResponse(response.body().getStatus(),"Something error");
+                }
+               else  relatedMembersView.failureResponse(null, "Server Error");
+            }
+
+            @Override
+            public void onFailure(Call<CreateHangoutResponse> call, Throwable t) {
+                relatedMembersView.failureResponse(null, "Server Error");
+            }
+        });
+    }
+
+    @Override
+    public void checkHangout(final String token, final String hangout_id) {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<CheckHangoutResponse> call = apiInterface.checkHangout(token,hangout_id);
+        call.enqueue(new Callback<CheckHangoutResponse>() {
+            @Override
+            public void onResponse(Call<CheckHangoutResponse> call, Response<CheckHangoutResponse> response) {
+                if (response.body() != null)
+                {
+                    if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
+                    {
+                        if(response.body().getPayload().getStatus().equals("0"))
+                        {
+                            relatedMembersView.successfullResponseCheckHangout("0");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkHangout(token,hangout_id);
+                                }
+                            },5000);
+                        }
+                        else if(response.body().getPayload().getStatus().equals("1")) {
+                            //goto HangoutProfile Chat
+                            relatedMembersView.successfullResponseCheckHangout("1");
+                        }
+                    }
+                    else relatedMembersView.failureResponse(response.body().getStatus(),"Something error");
+                }
+              else  relatedMembersView.failureResponse(null, "Server Error");
+            }
+
+            @Override
+            public void onFailure(Call<CheckHangoutResponse> call, Throwable t) {
+                relatedMembersView.failureResponse(null, "Server Error");
+            }
+        });
+
+    }
+
+    @Override
+    public void getCenterLocation() {
+        centerLatlng=mMap.getCameraPosition().target;
+        isHidden=true;
+    }
+    String getAddress(LatLng latLng) throws IOException {
+        String address="",city="",state="",country="";
+        String full_address="";
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(context, Locale.getDefault());
+
+        addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+        try{
+            address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+            city = addresses.get(0).getLocality();
+            state = addresses.get(0).getAdminArea();
+            country = addresses.get(0).getCountryName();
+        }
+        catch (Exception e)
+        {
+
+        }
+            if(address!=null)
+                full_address+=address;
+            if(city!=null)
+                full_address+= ", "+city;
+            if(state!=null)
+                full_address+=", "+state;
+            if(country!=null)
+                full_address+=", "+country;
+       return full_address;
+    }
+    @Override
     public void getActivities(String token) {
         //request
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -214,11 +386,28 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
         call.enqueue(new Callback<ActivitiesResponse>() {
             @Override
             public void onResponse(Call<ActivitiesResponse> call, Response<ActivitiesResponse> response) {
-                if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
-                    // EventBus.getDefault().post(new EventBusHangout(activities));
-                    relatedMembersView.successfulResponseActivites(response.body());
-                else
-                    relatedMembersView.failureResponse(response.body().getStatus(), response.body().getMessage());
+                if(response.body()!=null)
+                {
+                    if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
+                    {
+                        // EventBus.getDefault().post(new EventBusHangout(activities));
+                        relatedMembersView.successfulResponseActivites(response.body());
+                        activities=new ArrayList<ActivityModel>(response.body().getPayload().getActivities());
+                    }
+
+                    else
+                    {
+                        try{
+                            relatedMembersView.failureResponse(response.body().getStatus(), response.body().getMessage());
+                        }
+                        catch (Exception e)
+                        {
+                            relatedMembersView.failureResponse(null, "Server Error "+ response.body().getStatus());
+                        }
+                    }
+                }
+               else   relatedMembersView.failureResponse(null, "Server Error");
+
             }
 
             @Override
@@ -237,14 +426,27 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
         call.enqueue(new Callback<RelatedMembersResponse>() {
             @Override
             public void onResponse(Call<RelatedMembersResponse> call, Response<RelatedMembersResponse> response) {
-                if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
+                if(response.body()!=null)
                 {
-                    loadMarkers(response.body().getPayload().getUsers(),customMarkerView,imageView);
-                    slideDown(relativeLayout);
-                    relativeLayout.setVisibility(View.GONE);
+                    if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
+                    {
+                        loadMarkers(response.body().getPayload().getUsers(),customMarkerView,imageView);
+                        slideDown(relativeLayout);
+                        relativeLayout.setVisibility(View.GONE);
+                        relatedMembersView.successfulResponseRelatedMembers(response.body().getStatus(),"Users Detected");
+                    }
+                    else {
+                        try{
+                            relatedMembersView.failureResponse(response.body().getStatus(), response.body().getMessage());
+                        }
+                        catch (Exception e)
+                        {
+                            relatedMembersView.failureResponse(null, "Server Error "+ response.body().getStatus());
+                        }
+                    }
+
                 }
-                else
-                    relatedMembersView.failureResponse(response.body().getStatus(), response.body().getMessage());
+                else   relatedMembersView.failureResponse(null, "Server Error");
             }
 
             @Override
@@ -306,30 +508,47 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
         relativeLayout.startAnimation(animate);
     }
 
+    @Override
+    public void slideDown(LinearLayout linearLayout) {
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                linearLayout.getHeight()); // toYDelta
+        animate.setDuration(500);
+        animate.setFillAfter(true);
+        linearLayout.startAnimation(animate);
+    }
+
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        Toast.makeText(context, "User id " + marker.getTag(), Toast.LENGTH_SHORT).show();
-        Log.d("Hangout", "onMarkerClick: " + marker.getTag());
-        final Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.marker_dialog);
-        FancyButton btnHang = (FancyButton) dialog.findViewById(R.id.info_window_btn_invite);
-        FancyButton btnPreview = (FancyButton) dialog.findViewById(R.id.info_window_btn_preview);
-        btnHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isHidden) {
-                    proceedLayout.setVisibility(View.VISIBLE);
-                    isHidden = false;
+        user=markers_users.get(marker);
+        if(user!=null)
+        {
+            Toast.makeText(context, marker.getId() +" "+ user.getUuid(), Toast.LENGTH_SHORT).show();
+            Log.d("Hangout", "onMarkerClick: " + marker.getTag());
+            final Dialog dialog = new Dialog(context);
+            dialog.setContentView(R.layout.marker_dialog);
+            FancyButton btnHang = (FancyButton) dialog.findViewById(R.id.info_window_btn_invite);
+            TextView tvName=(TextView)dialog.findViewById(R.id.info_window_username);
+            tvName.setText(user.getName());
+            FancyButton btnPreview = (FancyButton) dialog.findViewById(R.id.info_window_btn_preview);
+            btnHang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isHidden) {
+                        proceedLayout.setVisibility(View.VISIBLE);
+                        isHidden = false;
+                    }
+                    addedMembers.add(user);
+                    adapter.notifyDataSetChanged();
+                    dialog.dismiss();
                 }
-//                HangoutInviteMemberModel model = new HangoutInviteMemberModel("kappa", "Omar ELRayes", "kappa2");
-                addedMembers.add(markers_users.get(marker));
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
+            });
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+        }
         return false;
     }
 
@@ -410,5 +629,18 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
     }
 
 
+    String validate(EditText title,EditText message){
+        if(title.getText().toString().trim().isEmpty())
+            return "Enter Hangout Title";
+        else if(message.getText().toString().trim().isEmpty())
+            return "Enter Cover Letter";
+        return "ok";
+    }
 
+    String list_to_string(ArrayList<UserModel> users)
+    {
+        ArrayList<Integer> temp=new ArrayList<>();
+        for(UserModel user:users) temp.add(Integer.valueOf(user.getUuid()));
+        return new Gson().toJson(temp);
+    }
 }
