@@ -27,7 +27,7 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
 
     private static final String EXTRA_TRANSITION_NAME = "transition_name";
     public static AppBarLayout appBarLayout;
-
+    String hangout_id="15";
     public HangoutProfileFragment() {
         // Required empty public constructor
     }
@@ -108,7 +108,11 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
                 case 0:
                     return new HangoutProfileDetailsFragment();
                 case 1:
-                    return new HangoutProfilePostsFragment();
+                    HangoutProfilePostsFragment fragment=new HangoutProfilePostsFragment();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("hangout_id",hangout_id);
+                    fragment.setArguments(bundle);
+                    return fragment;
                 case 2:
                     return new HangoutProfileChatFragment();
                 default:
