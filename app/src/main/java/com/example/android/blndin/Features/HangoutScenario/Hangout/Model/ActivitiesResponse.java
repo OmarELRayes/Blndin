@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model;
+package com.example.android.blndin.Features.HangoutScenario.Hangout.Model;
 
 import com.example.android.blndin.Models.ActivityModel;
 

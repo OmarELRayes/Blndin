@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers;
+package com.example.android.blndin.Features.HangoutScenario.Hangout;
 
 
 import android.content.Context;
@@ -17,21 +17,18 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.android.blndin.Adapters.HangoutInviteMembersAdapter;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Presenter.RelatedMembersPresenter;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.View.RelatedMembersView;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Presenter.HangoutPresenter;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.View.RelatedMembersView;
 import com.example.android.blndin.Models.ActivityModel;
 import com.example.android.blndin.Models.UserModel;
 import com.example.android.blndin.R;
 import com.isapanah.awesomespinner.AwesomeSpinner;
-import com.twitter.sdk.android.core.models.User;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.ThreadMode;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -48,7 +45,7 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
     @BindView(R.id.et_hangout_sub_activity)EditText sub_activity_et;
     @BindView(R.id.pin_location_layout)RelativeLayout pin_layout;
     @BindView(R.id.pin_location_btn)ImageView pin_btn;
-    RelatedMembersPresenter presenter;
+    HangoutPresenter presenter;
     //View components
     View v;
     View mCustomMarkerView;
@@ -111,7 +108,7 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
                  presenter.fillHangoutDialog(String.valueOf(spinner.getSelectedItemPosition()),sub_activity_et.getText().toString());
              }
          });
-         presenter=new RelatedMembersPresenterImp(this,getActivity(),proceedLayout,adapter,members);
+         presenter=new HangoutPresenterImp(this,getActivity(),proceedLayout,adapter,members);
      }
 
 

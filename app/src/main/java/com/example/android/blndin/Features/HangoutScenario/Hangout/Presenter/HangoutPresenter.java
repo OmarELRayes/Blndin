@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Presenter;
+package com.example.android.blndin.Features.HangoutScenario.Hangout.Presenter;
 
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentManager;
@@ -8,17 +8,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 
-import com.example.android.blndin.Models.ActivityModel;
 import com.example.android.blndin.Models.UserModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Luffy on 5/12/2018.
  */
 
-public interface RelatedMembersPresenter {
+public interface HangoutPresenter {
 
    void getActivities(String token);
 
