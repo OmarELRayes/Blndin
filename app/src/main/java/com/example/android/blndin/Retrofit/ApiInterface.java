@@ -1,20 +1,15 @@
 package com.example.android.blndin.Retrofit;
 
 
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CheckHangoutResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CreateHangoutResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
 
 import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
 import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
 import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

@@ -1,11 +1,12 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model;
+package com.example.android.blndin.Features.HangoutScenario.Hangout.Model;
 
 /**
  * Created by Luffy on 5/12/2018.
  */
 
-public class CheckHangoutResponse {
+public class CreateHangoutResponse {
     String status;
+    String message;
     Payload payload;
 
     public String getStatus() {
@@ -14,6 +15,14 @@ public class CheckHangoutResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Payload getPayload() {
@@ -26,7 +35,7 @@ public class CheckHangoutResponse {
 
     public class Payload{
         String message;
-        String status;
+        String hangout_id;
 
         public String getMessage() {
             return message;
@@ -36,12 +45,12 @@ public class CheckHangoutResponse {
             this.message = message;
         }
 
-        public String getStatus() {
-            return status;
+        public String getHangout_id() {
+            return hangout_id;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setHangout_id(String hangout_id) {
+            this.hangout_id = hangout_id;
         }
     }
 }

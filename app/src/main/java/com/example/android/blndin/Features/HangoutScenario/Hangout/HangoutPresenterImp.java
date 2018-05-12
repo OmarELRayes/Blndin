@@ -1,4 +1,4 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers;
+package com.example.android.blndin.Features.HangoutScenario.Hangout;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -35,12 +35,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CheckHangoutResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.CreateHangoutResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Presenter.RelatedMembersPresenter;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.View.RelatedMembersView;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Presenter.HangoutPresenter;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.View.RelatedMembersView;
 import com.example.android.blndin.Models.ActivityModel;
 import com.example.android.blndin.Models.UserModel;
 import com.example.android.blndin.R;
@@ -65,10 +65,7 @@ import com.karumi.dexter.Dexter;
 import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
-import com.twitter.sdk.android.core.models.User;
 
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -89,7 +86,7 @@ import static android.content.Context.LOCATION_SERVICE;
  * Created by Luffy on 5/12/2018.
  */
 
-public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleMap.OnMarkerClickListener {
 
     RelatedMembersView relatedMembersView;
@@ -112,7 +109,7 @@ public class RelatedMembersPresenterImp implements RelatedMembersPresenter, OnMa
     Boolean setMembersDone=false;
     LatLng centerLatlng;
 
-    public RelatedMembersPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter,ArrayList<UserModel>addedMembers)
+    public HangoutPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter, ArrayList<UserModel>addedMembers)
     {
         this.relatedMembersView = relatedMembersView;
         this.context = context;

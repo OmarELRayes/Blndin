@@ -1,11 +1,8 @@
-package com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.View;
+package com.example.android.blndin.Features.HangoutScenario.Hangout.View;
 
 import android.view.View;
 
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.twitter.sdk.android.core.models.User;
-
-import java.util.ArrayList;
+import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
 
 /**
  * Created by Luffy on 5/12/2018.
