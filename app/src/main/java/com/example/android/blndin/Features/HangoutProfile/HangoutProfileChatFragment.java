@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.HangoutProfile;
 
 
 import android.os.Bundle;

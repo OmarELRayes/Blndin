@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.HangoutProfile;
 
 
 import android.os.Bundle;
@@ -19,25 +19,26 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsfeedDiscoverFragment extends Fragment {
+public class HangoutProfilePostsFragment extends Fragment {
+
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     ArrayList<NewsfeedModel> models;
     LinearLayoutManager layoutManager;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newsfeed_discover, container, false);
+        return inflater.inflate(R.layout.fragment_hangout_profile_posts, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.newsfeed_discover_recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.hangoutProfilePosts_recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);

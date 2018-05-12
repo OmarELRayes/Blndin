@@ -1,6 +1,7 @@
 package com.example.android.blndin.Features.Auth.Login;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.example.android.blndin.Features.Auth.AuthPresenterImp;
@@ -30,11 +31,21 @@ public class LoginPresenterImp extends AuthPresenterImp implements LoginPresente
     }
 
     @Override
-    public void onResume(Activity activity) {
-        String data = SharedPreferencesHelper.retrieveDataFromSharedPref(activity, "token");
+    public void onCreate(Context context) {
+        super.onCreate(context);
+        String data = SharedPreferencesHelper.retrieveDataFromSharedPref(context, "token");
         Log.d("token", "onResume: " + data);
         if (data != null)
             view.loginSuccessful(data);
+
+    }
+
+    @Override
+    public void onResume(Activity activity) {
+//        String data = SharedPreferencesHelper.retrieveDataFromSharedPref(activity, "token");
+//        Log.d("token", "onResume: " + data);
+//        if (data != null)
+//            view.loginSuccessful(data);
     }
 
     @Override
@@ -47,9 +58,11 @@ public class LoginPresenterImp extends AuthPresenterImp implements LoginPresente
             call.enqueue(new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    saveToken(response.body().getToken());
-                    Log.d("Token", "onResponse: " + response.body().getToken());
-                    view.loginSuccessful(response.body().getStatus().toString());
+                    if (response.body().getStatus().equals("200")) {
+                        saveToken(response.body().getToken());
+                        Log.d("Token", "onResponse: " + response.body().getToken());
+                        view.loginSuccessful(response.body().getStatus().toString());
+                    }
                 }
 
                 @Override

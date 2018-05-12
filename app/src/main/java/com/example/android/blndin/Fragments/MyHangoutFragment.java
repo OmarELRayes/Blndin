@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.blndin.Adapters.MyHangoutAdapter;
+import com.example.android.blndin.Features.HangoutProfile.HangoutProfileFragment;
 import com.example.android.blndin.Models.MyHangoutModel;
 import com.example.android.blndin.MyHangoutsItemClickListener;
 import com.example.android.blndin.R;

@@ -1,12 +1,11 @@
 package com.example.android.blndin.Retrofit;
 
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
-import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
-import com.example.android.blndin.Features.Login.Model.LoginResponse;
-import com.example.android.blndin.Features.SignUp.Model.SignUpResponse;
 import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
 import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
 import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
+import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.ActivitiesResponse;
+import com.example.android.blndin.Features.HangoutScenario.GetRelatedMembers.Model.RelatedMembersResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -41,6 +40,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("settings/set-username")
     Call<SetUserNameResponse> setUserName(@Field("username") String username, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("hangouts/show")
+    Call<HangoutProfileDetailsResponse> getHangoutDetails(@Field("hangout_id") String id, @Field("token") String token);
 
 
 

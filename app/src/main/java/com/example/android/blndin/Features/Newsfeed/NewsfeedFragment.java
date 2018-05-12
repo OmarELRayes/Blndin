@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.Newsfeed;
 
 
 import android.content.Intent;
