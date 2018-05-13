@@ -49,6 +49,17 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'support-core-utils'
     }
+
+    compile('com.facebook.android:facebook-login:[4,5)') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'cardview-v7'
+        exclude group: 'com.android.support', module: 'customtabs'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    }
+
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:cardview-v7:25.3.1'
@@ -75,17 +86,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.karumi:dexter:4.2.0'
-
-    testCompile 'junit:junit:4.12'
-    compile('com.facebook.android:facebook-login:[4,5)') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'cardview-v7'
-        exclude group: 'com.android.support', module: 'customtabs'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'support-core-utils'
-    }
-
     compile 'com.twitter.sdk.android:twitter:3.1.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'

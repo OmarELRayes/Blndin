@@ -16,7 +16,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -37,7 +36,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Features.Auth.Login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -69,6 +67,7 @@
         <activity
             android:name=".CompleteProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity android:name=".CommentsActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,6 @@
 package com.example.android.blndin.Retrofit;
 
-
+import com.example.android.blndin.Features.HangoutProfile.Model.CommentsResponse;
 import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
 import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
 import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
@@ -8,6 +8,7 @@ import com.example.android.blndin.Features.HangoutProfile.Model.AddChatMessageRe
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileChatResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfilePostsResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.NormalPostResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
@@ -65,6 +66,22 @@ public interface ApiInterface {
     @POST("hangouts/posts")
     Call<HangoutProfilePostsResponse>getHangoutPost(@Field("token")String token, @Field("hangout_id")String hangout_id, @Query("page") String page);
 
+    @FormUrlEncoded
+    @POST("hangouts/posts/like")
+    Call<NormalPostResponse> likeHangoutPost(@Field("token")String token,@Field("post_id")String post_id);
+
+    @FormUrlEncoded
+    @POST("hangouts/posts/unlike")
+    Call<NormalPostResponse> unlikeHangoutPost(@Field("token")String token,@Field("post_id")String post_id);
+
+    @FormUrlEncoded
+    @POST("hangouts/posts/comments")
+    Call<CommentsResponse>getHangoutPostComments(@Field("token")String token,@Field("post_id")String post_id,@Query("page")String page);
+
+    @FormUrlEncoded
+    @POST("hangouts/posts/comments/comment")
+    Call<NormalPostResponse>add_comment_hangout(@Field("token")String token,@Field("post_id")String post_id,@Field("comment")String comment);
+    
     @FormUrlEncoded
     @POST("hangouts/chat")
     Call<HangoutProfileChatResponse> getHangoutChat(@Field("token") String token, @Field("hangout_id") String hangout_id, @Query("page") String page);
