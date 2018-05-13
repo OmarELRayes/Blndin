@@ -61,7 +61,6 @@ public class HangoutProfilePostsFragment extends Fragment implements HangoutPost
                 super.onScrolled(recyclerView, dx, dy);
                 if(!recyclerView.canScrollVertically(1))
                 {
-
                     presenter.getPostsByPage("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangout_id);
                 }
 

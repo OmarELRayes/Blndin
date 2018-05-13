@@ -1,14 +1,15 @@
 package com.example.android.blndin.Features.HangoutProfile.Model;
 
+import com.example.android.blndin.Models.CommentModel;
 import com.example.android.blndin.Models.PostModel;
 
 import java.util.ArrayList;
 
 /**
- * Created by Luffy on 5/12/2018.
+ * Created by Luffy on 5/13/2018.
  */
 
-public class HangoutProfilePostsResponse {
+public class CommentsResponse {
     String status;
     Paginator paginator;
     Payload payload;
@@ -68,13 +69,13 @@ public class HangoutProfilePostsResponse {
     }
 
     public class Payload{
-        ArrayList<PostModel> data;
+        ArrayList<CommentModel> data;
 
-        public ArrayList<PostModel> getData() {
+        public ArrayList<CommentModel> getData() {
             return data;
         }
 
-        public void setData(ArrayList<PostModel> data) {
+        public void setData(ArrayList<CommentModel> data) {
             this.data = data;
         }
     }
