@@ -1,9 +1,11 @@
 package com.example.android.blndin.Features.HangoutProfile;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,10 +15,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.android.blndin.Adapters.SquadProfileChatAdapter;
-import com.example.android.blndin.Models.SquadChatModel;
+import com.example.android.blndin.Adapters.ChatAdapter;
+import com.example.android.blndin.Features.HangoutProfile.Presenter.HangoutProfileChatPresenter;
+import com.example.android.blndin.Features.HangoutProfile.View.HangoutChatView;
+import com.example.android.blndin.Models.ChatMessageModel;
 import com.example.android.blndin.R;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -26,7 +32,7 @@ import static android.view.View.VISIBLE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HangoutProfileChatFragment extends Fragment {
+public class HangoutProfileChatFragment extends Fragment implements HangoutChatView {
 
 
     LinearLayout writing_layout;
@@ -35,10 +41,12 @@ public class HangoutProfileChatFragment extends Fragment {
     String temp;
     TextView send;
     ListView messageview;
-    SquadProfileChatAdapter adapter;
-    ArrayList<SquadChatModel> models;
-
-
+    ChatAdapter adapter;
+    ArrayList<ChatMessageModel> models;
+    HangoutProfileChatPresenter presenter;
+    String hangoutId, token;
+    Context context;
+    SwipeRefreshLayout refreshLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,16 +57,19 @@ public class HangoutProfileChatFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         init(view);
-        set_adapter();
+        context = getContext();
+        if (getUserVisibleHint()) {
+            set_adapter();
+        }
     }
 
     void init(View view) {
-        messageview = (ListView) view.findViewById(R.id.messages_view);
-        send = (TextView) view.findViewById(R.id.tv_squad_chat_send);
-        writing_layout = (LinearLayout) view.findViewById(R.id.squadchat_writing_layout);
-        standing_layout = (LinearLayout) view.findViewById(R.id.squadchat_standing_layout);
-        writing_et = (EditText) view.findViewById(R.id.et_writing_squad);
-        standing_et = (EditText) view.findViewById(R.id.et_standing_squad);
+        messageview = (ListView) view.findViewById(R.id.hangout_chat_messages_view);
+        send = (TextView) view.findViewById(R.id.hangout_chat_send);
+        writing_layout = (LinearLayout) view.findViewById(R.id.hangout_chat_writing_layout);
+        standing_layout = (LinearLayout) view.findViewById(R.id.hangout_chat_standing_layout);
+        writing_et = (EditText) view.findViewById(R.id.hangout_chat_writing_et);
+        standing_et = (EditText) view.findViewById(R.id.hangout_chat_standing_et);
         standing_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -110,24 +121,52 @@ public class HangoutProfileChatFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.add_chat_item(new SquadChatModel(writing_et.getText().toString(), true));
-                messageview.setSelection(models.size() - 1);
+                String message = writing_et.getText().toString();
+                presenter.addChatMessage(token, hangoutId, message);
+                adapter.addChatMessage(new ChatMessageModel(message));
                 writing_et.setText("");
                 writing_layout.setVisibility(GONE);
                 standing_layout.setVisibility(VISIBLE);
             }
         });
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.hangout_chat_refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getPostsByPage(token, hangoutId);
+            }
+        });
     }
 
+
     void set_adapter() {
+        hangoutId = "15";
+        token = SharedPreferencesHelper.retrieveDataFromSharedPref(context, "token");
         models = new ArrayList<>();
-        models.add(new SquadChatModel("MADAFAKA", false, "Momen"));
-        models.add(new SquadChatModel("FAG,ME,?", true));
-        models.add(new SquadChatModel("Yes you!", false, "Momen"));
-        models.add(new SquadChatModel("STFU", true));
-        adapter = new SquadProfileChatAdapter(models, getContext());
+        adapter = new ChatAdapter(models, getContext());
         messageview.setAdapter(adapter);
+        presenter = new HangoutProfileChatPresenterImp(getContext(), this, adapter, models);
+        presenter.getPostsByPage(token, hangoutId);
         messageview.setSelection(models.size() - 1);
     }
 
+    @Override
+    public void success(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void failure(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setFocus() {
+        messageview.setSelection(messageview.getAdapter().getCount() - 1);
+    }
+
+    @Override
+    public void stopRefreshing() {
+        refreshLayout.setRefreshing(false);
+    }
 }
