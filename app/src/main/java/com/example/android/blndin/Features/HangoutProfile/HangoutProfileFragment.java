@@ -114,7 +114,11 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
                     fragment.setArguments(bundle);
                     return fragment;
                 case 2:
-                    return new HangoutProfileChatFragment();
+                    HangoutProfileChatFragment chatFragment = new HangoutProfileChatFragment();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("hangout_id", hangout_id);
+                    chatFragment.setArguments(bundle1);
+                    return chatFragment;
                 default:
                     return null;
             }

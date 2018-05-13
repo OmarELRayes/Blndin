@@ -34,7 +34,7 @@ public class LoginPresenterImp extends AuthPresenterImp implements LoginPresente
     public void onCreate(Context context) {
         super.onCreate(context);
         String data = SharedPreferencesHelper.retrieveDataFromSharedPref(context, "token");
-        Log.d("token", "onResume: " + data);
+        Log.d("tokenn", "onResume: " + data);
         if (data != null)
             view.loginSuccessful(data);
 
@@ -74,7 +74,7 @@ public class LoginPresenterImp extends AuthPresenterImp implements LoginPresente
     }
 
     boolean validate(String username, String password) {
-        if (password.length() > 6) {
+        if (password.length() >= 6) {
             return true;
         }
         return false;

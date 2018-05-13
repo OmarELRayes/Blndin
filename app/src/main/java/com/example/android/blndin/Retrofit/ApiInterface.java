@@ -1,22 +1,22 @@
 package com.example.android.blndin.Retrofit;
 
 
+import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
+import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
+import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.AddChatMessageResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileChatResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfilePostsResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
 
-import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
-import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
-import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
-import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
-
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -64,4 +64,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("hangouts/posts")
     Call<HangoutProfilePostsResponse>getHangoutPost(@Field("token")String token, @Field("hangout_id")String hangout_id, @Query("page") String page);
+
+    @FormUrlEncoded
+    @POST("hangouts/chat")
+    Call<HangoutProfileChatResponse> getHangoutChat(@Field("token") String token, @Field("hangout_id") String hangout_id, @Query("page") String page);
+
+    @FormUrlEncoded
+    @POST("hangouts/chat/create")
+    Call<AddChatMessageResponse> addMessage(@Field("token") String token, @Field("hangout_id") String hangout_id, @Field("message") String message);
 }
