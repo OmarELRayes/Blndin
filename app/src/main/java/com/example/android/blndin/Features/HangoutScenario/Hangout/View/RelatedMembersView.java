@@ -15,5 +15,5 @@ public interface RelatedMembersView {
     void failureResponse(String status,String message);
     View findViewById();
     void successfulResponseCreateHangout(String message);
-    void successfullResponseCheckHangout(String status);
+    void successfullResponseCheckHangout(String status,String hangout_id);
 }

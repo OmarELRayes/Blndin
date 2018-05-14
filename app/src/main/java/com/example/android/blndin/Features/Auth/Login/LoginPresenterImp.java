@@ -59,7 +59,7 @@ public class LoginPresenterImp extends AuthPresenterImp implements LoginPresente
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.body().getStatus().equals("200")) {
-                        saveToken(response.body().getToken());
+                        saveToken(response.body().getToken(),response.body().getPayload().getUsers().getUsername());
                         Log.d("Token", "onResponse: " + response.body().getToken());
                         view.loginSuccessful(response.body().getStatus().toString());
                     }

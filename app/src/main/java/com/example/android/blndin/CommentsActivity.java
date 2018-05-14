@@ -16,6 +16,7 @@ import com.example.android.blndin.Features.HangoutProfile.HangoutPostCommentsPre
 import com.example.android.blndin.Features.HangoutProfile.Presenter.HangoutPostCommentsPresenter;
 import com.example.android.blndin.Features.HangoutProfile.View.HangoutPostCommentsView;
 import com.example.android.blndin.Models.CommentModel;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -52,19 +53,19 @@ public class CommentsActivity extends AppCompatActivity implements HangoutPostCo
         adapter=new HangoutCommentsAdapter(getApplicationContext(),models);
         recyclerView.setAdapter(adapter);
         presenter=new HangoutPostCommentsPresenterImp(getApplicationContext(),adapter,models,this);
-        presenter.getCommentsByPage("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",post_id);
+        presenter.getCommentsByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getApplicationContext(),"token"),post_id);
         send_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!send_comment_et.getText().toString().trim().isEmpty())
-                presenter.addComment("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",post_id,send_comment_et.getText().toString());
+                presenter.addComment(SharedPreferencesHelper.retrieveDataFromSharedPref(getApplicationContext(),"token"),post_id,send_comment_et.getText().toString());
                 else Toast.makeText(getApplicationContext(),"Write comment",Toast.LENGTH_SHORT).show();
             }
         });
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.getCommentsByPage("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",post_id);
+                presenter.getCommentsByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getApplicationContext(),"token"),post_id);
             }
         });
     }

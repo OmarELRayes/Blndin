@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.android.blndin.Features.Auth.Login.LoginActivity;
 import com.example.android.blndin.Features.Invites.InvitationsFragment;
 import com.example.android.blndin.Features.Profile.UserProfileActivity;
 import com.example.android.blndin.R;
@@ -29,7 +31,7 @@ public class ExtrasFragment extends Fragment {
     RelativeLayout settings;
     RelativeLayout logout;
     RelativeLayout places;
-
+    TextView name;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class ExtrasFragment extends Fragment {
         settings = (RelativeLayout) view.findViewById(R.id.extras_settings);
         logout = (RelativeLayout) view.findViewById(R.id.extras_logout);
         places = (RelativeLayout) view.findViewById(R.id.extras_places);
+        name=(TextView)view.findViewById(R.id.extras_user_name);
+        name.setText(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"username"));
         setNav();
     }
 
@@ -107,7 +111,9 @@ public class ExtrasFragment extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 SharedPreferencesHelper.clearAllSavedSharedData(getContext());
-                getActivity().finish();
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }
