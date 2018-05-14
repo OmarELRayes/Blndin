@@ -15,6 +15,7 @@ import com.example.android.blndin.R;
 import com.example.android.blndin.Retrofit.ApiClient;
 import com.example.android.blndin.Retrofit.ApiInterface;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -54,13 +55,13 @@ public class InvitationSquadAdapter extends RecyclerView.Adapter<InvitationSquad
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acceptInvite(Constants.TOKEN_1,models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
+                acceptInvite(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
             }
         });
         holder.decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delineInvite(Constants.TOKEN_1,models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
+                delineInvite(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
             }
         });
     }
@@ -89,7 +90,7 @@ public class InvitationSquadAdapter extends RecyclerView.Adapter<InvitationSquad
     void acceptInvite(String token, String id, final int pos)
     {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<NormalPostResponse> call = apiInterface.acceptHangoutInvite(token,id);
+        Call<NormalPostResponse> call = apiInterface.acceptSquadInvite(token,id);
         call.enqueue(new Callback<NormalPostResponse>() {
             @Override
             public void onResponse(Call<NormalPostResponse> call, Response<NormalPostResponse> response) {
@@ -111,7 +112,7 @@ public class InvitationSquadAdapter extends RecyclerView.Adapter<InvitationSquad
     void delineInvite(String token,String id, final int pos)
     {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<NormalPostResponse> call = apiInterface.declineHangoutInvite(token,id);
+        Call<NormalPostResponse> call = apiInterface.declineSquadInvite(token,id);
         call.enqueue(new Callback<NormalPostResponse>() {
             @Override
             public void onResponse(Call<NormalPostResponse> call, Response<NormalPostResponse> response) {

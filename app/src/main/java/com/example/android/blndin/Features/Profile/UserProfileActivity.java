@@ -22,6 +22,7 @@ import com.example.android.blndin.Features.Profile.Model.ProfileDetailsResponse;
 import com.example.android.blndin.Features.Profile.View.ProfileDetailsView;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +47,7 @@ public class UserProfileActivity extends AppCompatActivity implements AppBarLayo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.bind(this);
-        presenter=new ProfileDetailsPresenterImp(this);
+        presenter=new ProfileDetailsPresenterImp(this,getApplicationContext());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.user_profile_tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.user_profile_viewpager);
@@ -69,7 +70,7 @@ public class UserProfileActivity extends AppCompatActivity implements AppBarLayo
         tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(this, R.color.light_green), PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_about);
         tabLayout.addOnTabSelectedListener(this);
-         presenter.getProfileData(Constants.TOKEN_1);
+         presenter.getProfileData(SharedPreferencesHelper.retrieveDataFromSharedPref(getApplicationContext(),"token"));
     }
     void get_image(CircleImageView image, String url) {
         Glide.with(getApplicationContext())

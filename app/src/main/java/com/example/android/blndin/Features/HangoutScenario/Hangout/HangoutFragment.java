@@ -24,6 +24,7 @@ import com.example.android.blndin.Models.ActivityModel;
 import com.example.android.blndin.Models.UserModel;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 import com.isapanah.awesomespinner.AwesomeSpinner;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
         spinner_list=new ArrayList<>();
         presenter.buildApiClient();
         presenter.initMap(getChildFragmentManager());
-        presenter.getActivities(Constants.TOKEN);
+        presenter.getActivities(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
         spinner.setOnSpinnerItemClickListener(new AwesomeSpinner.onSpinnerItemClickListener<String>() {
             @Override
             public void onItemSelected(int position, String itemAtPosition) {
@@ -88,7 +89,7 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
              @Override
              public void onClick(View v) {
                 if(!sub_activity_et.getText().toString().trim().isEmpty())
-                 presenter.getRelatedMembers(Constants.TOKEN,hangoutLayout,mCustomMarkerView,mMarkerImageView);
+                 presenter.getRelatedMembers(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"),hangoutLayout,mCustomMarkerView,mMarkerImageView);
                  else
                      Toast.makeText(getActivity(),"Enter Specific activity",Toast.LENGTH_SHORT).show();
 

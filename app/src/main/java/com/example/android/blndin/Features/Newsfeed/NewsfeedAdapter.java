@@ -19,6 +19,7 @@ import com.example.android.blndin.R;
 import com.example.android.blndin.Retrofit.ApiClient;
 import com.example.android.blndin.Retrofit.ApiInterface;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import org.w3c.dom.Text;
 
@@ -73,13 +74,13 @@ public class NewsfeedAdapter  extends RecyclerView.Adapter<NewsfeedAdapter.ViewH
             public void onClick(View v) {
                 if(models.get(holder.getAdapterPosition()).getIsLiked().equals("0"))
                 {
-                    setLike(Constants.TOKEN,models.get(holder.getAdapterPosition()).getId());
+                    setLike(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.fill_like);
                     models.get(position).setIsLiked("1");
                 }
                 else
                     {
-                    setUnlike(Constants.TOKEN,models.get(holder.getAdapterPosition()).getId());
+                    setUnlike(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.like);
                         models.get(position).setIsLiked("0");
                 }

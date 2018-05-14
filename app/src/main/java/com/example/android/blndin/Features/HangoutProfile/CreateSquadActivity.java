@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.android.blndin.Features.HangoutProfile.View.CreateSquadView;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +34,7 @@ public class CreateSquadActivity extends AppCompatActivity implements CreateSqua
             public void onClick(View v) {
                 if(validate().equals("ok"))
                 {
-                    presenter.createSquad(Constants.TOKEN,hangout_id,title.getText().toString(),desc.getText().toString()
+                    presenter.createSquad(SharedPreferencesHelper.retrieveDataFromSharedPref(getApplicationContext(),"token"),hangout_id,title.getText().toString(),desc.getText().toString()
                             ,message.getText().toString(),"http://blndincore.s3.eu-west-2.amazonaws.com/defaults/user.jpg");
                     finish();
                 }

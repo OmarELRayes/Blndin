@@ -15,6 +15,7 @@ import com.example.android.blndin.Features.Profile.View.ProfilePostsView;
 import com.example.android.blndin.Models.NewsfeedModel;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -51,13 +52,13 @@ public class UserProfileWallFragment extends Fragment implements ProfilePostsVie
         adapter = new NewsfeedAdapter(models, getActivity(), false);
         recyclerView.setAdapter(adapter);
         presenter=new ProfilePostsPresenterImp(this,adapter,models,getActivity());
-        presenter.getPostsByPage(Constants.TOKEN_1);
+        presenter.getPostsByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!recyclerView.canScrollVertically(1)) {
-                    presenter.getPostsByPage(Constants.TOKEN);
+                    presenter.getPostsByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
                 }
             }
         });

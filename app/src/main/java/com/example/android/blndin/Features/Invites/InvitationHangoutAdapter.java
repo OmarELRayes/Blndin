@@ -18,6 +18,7 @@ import com.example.android.blndin.R;
 import com.example.android.blndin.Retrofit.ApiClient;
 import com.example.android.blndin.Retrofit.ApiInterface;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -57,13 +58,13 @@ public class InvitationHangoutAdapter extends RecyclerView.Adapter<InvitationHan
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acceptInvite(Constants.TOKEN_1,models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
+                acceptInvite(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
             }
         });
         holder.decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delineInvite(Constants.TOKEN_1,models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
+                delineInvite(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),models.get(holder.getAdapterPosition()).getId(),holder.getAdapterPosition());
             }
         });
 

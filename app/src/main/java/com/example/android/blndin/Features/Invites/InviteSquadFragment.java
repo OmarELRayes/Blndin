@@ -16,6 +16,7 @@ import com.example.android.blndin.Features.Invites.View.InviteSquadView;
 import com.example.android.blndin.Models.InviteSquadModel;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -51,13 +52,13 @@ public class InviteSquadFragment extends Fragment implements InviteSquadView {
         adapter=new InvitationSquadAdapter(getActivity(),models);
         recyclerView.setAdapter(adapter);
         presenter=new InviteSquadPresenterImp(getActivity(),adapter,models,this);
-        presenter.getInviteSquadByPage(Constants.TOKEN_1);
+        presenter.getInviteSquadByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!recyclerView.canScrollVertically(1)) {
-                    presenter.getInviteSquadByPage(Constants.TOKEN_1);
+                    presenter.getInviteSquadByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
                 }
             }
         });

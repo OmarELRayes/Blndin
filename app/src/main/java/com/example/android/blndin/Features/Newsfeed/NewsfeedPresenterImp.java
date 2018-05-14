@@ -85,7 +85,7 @@ public class NewsfeedPresenterImp implements NewsfeedPresenter {
     void getNewsfeedWall(String token,String page)
     {
         ApiInterface apiInterface= ApiClient.getClient().create(ApiInterface.class);
-        Call<NewsfeedResponse> call=apiInterface.getDiscoverNewsfeed(token,page);
+        Call<NewsfeedResponse> call=apiInterface.getWallNewsfeed(token,page);
         call.enqueue(new Callback<NewsfeedResponse>() {
             @Override
             public void onResponse(Call<NewsfeedResponse> call, Response<NewsfeedResponse> response) {
