@@ -1,4 +1,4 @@
-package com.example.android.blndin;
+package com.example.android.blndin.Features.MyHangouts;
 
 import android.widget.ImageView;
 
@@ -9,5 +9,5 @@ import com.example.android.blndin.Models.MyHangoutModel;
  */
 
 public interface MyHangoutsItemClickListener {
-    void onHangoutClickListener(int pos, MyHangoutModel item, ImageView shareImageView);
+    void onHangoutClickListener(int pos, MyHangoutModel item, ImageView shareImageView, String hangout_id, String image_url);
 }
