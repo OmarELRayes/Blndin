@@ -8,4 +8,5 @@ import android.content.Context;
 
 public interface HangoutDetailsPresenter {
     void getHangoutDetails(String hangoutId, Context context);
+    void createSquad(String token,String hangout_id);
 }

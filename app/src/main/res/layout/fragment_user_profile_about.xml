@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.android.blndin.Fragments.UserProfileAboutFragment">
+        tools:context="com.example.android.blndin.Features.Profile.UserProfileAboutFragment">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -38,43 +38,43 @@
                     android:orientation="vertical"
                     android:padding="5dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:gravity="center_vertical">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="7dp"-->
+                        <!--android:gravity="center_vertical">-->
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_bio" />
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginEnd="10dp"-->
+                            <!--android:src="@drawable/ic_bio" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="20 , Computer Science - SWE"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="20 , Computer Science - SWE"-->
+                            <!--android:textSize="16sp" />-->
+                    <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:gravity="center_vertical">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="7dp"-->
+                        <!--android:gravity="center_vertical">-->
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_places_grey" />
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginEnd="10dp"-->
+                            <!--android:src="@drawable/ic_places_grey" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Egypt, Mansoura"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Egypt, Mansoura"-->
+                            <!--android:textSize="16sp" />-->
+                    <!--</LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -88,6 +88,7 @@
                             android:src="@drawable/ic_bio" />
 
                         <TextView
+                            android:id="@+id/bio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="20 , Computer Science - SWE"

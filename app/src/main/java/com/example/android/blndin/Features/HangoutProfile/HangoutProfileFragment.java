@@ -106,7 +106,11 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new HangoutProfileDetailsFragment();
+                    HangoutProfileDetailsFragment detailsFragment=new HangoutProfileDetailsFragment();
+                    Bundle bundleD=new Bundle();
+                    bundleD.putString("hangout_id",hangout_id);
+                    detailsFragment.setArguments(bundleD);
+                    return detailsFragment;
                 case 1:
                     HangoutProfilePostsFragment fragment=new HangoutProfilePostsFragment();
                     Bundle bundle=new Bundle();

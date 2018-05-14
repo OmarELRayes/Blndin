@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.example.android.blndin.Features.Invites.InvitationsFragment;
+import com.example.android.blndin.Features.Profile.UserProfileActivity;
 import com.example.android.blndin.R;
-import com.example.android.blndin.UserProfileActivity;
 import com.example.android.blndin.Util.SharedPreferencesHelper;
 import com.google.firebase.auth.FirebaseAuth;
 

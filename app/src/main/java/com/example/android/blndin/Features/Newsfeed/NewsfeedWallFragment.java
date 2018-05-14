@@ -9,23 +9,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.android.blndin.Adapters.NewsfeedAdapter;
+import com.example.android.blndin.Features.Newsfeed.view.NewsfeedView;
 import com.example.android.blndin.Models.NewsfeedModel;
 import com.example.android.blndin.R;
+import com.example.android.blndin.Util.Constants;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsfeedWallFragment extends Fragment {
+public class NewsfeedWallFragment extends Fragment implements NewsfeedView {
 
-    RecyclerView recyclerView;
+    @BindView(R.id.newsfeed_wall_recyclerView)RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     ArrayList<NewsfeedModel> models;
     LinearLayoutManager layoutManager;
-
+    NewsfeedPresenterImp presenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,14 +41,33 @@ public class NewsfeedWallFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = (RecyclerView) view.findViewById(R.id.newsfeed_wall_recyclerView);
+        ButterKnife.bind(this,view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         models = new ArrayList<>();
-        for (int i = 0; i < 8; i++)
-            models.add(new NewsfeedModel("Omar ELRayes", false));
-        adapter = new NewsfeedAdapter(models, getActivity());
+        adapter = new NewsfeedAdapter(models, getActivity(),true);
         recyclerView.setAdapter(adapter);
+        presenter=new NewsfeedPresenterImp(getActivity(),adapter,this,models);
+        presenter.getNewsfeedWallByPage(Constants.TOKEN);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) {
+                    presenter.getNewsfeedsDiscoverByPage(Constants.TOKEN);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void successfulResponse(String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void failureResponse(String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 }

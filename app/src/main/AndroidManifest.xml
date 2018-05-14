@@ -62,12 +62,13 @@
             android:name=".DetailsSquadActivty"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".Features.Profile.UserProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".CompleteProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".CommentsActivity"></activity>
+        <activity android:name=".CommentsActivity" />
+        <activity android:name=".Features.HangoutProfile.CreateSquadActivity"></activity>
     </application>
 
 </manifest>

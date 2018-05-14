@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.Profile;
 
 
 import android.os.Bundle;
@@ -14,12 +14,14 @@ import com.example.android.blndin.R;
 
 import org.apmem.tools.layouts.FlowLayout;
 
+import butterknife.BindView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class UserProfileAboutFragment extends Fragment {
 
-    boolean auth;
+    @BindView(R.id.bio)TextView bio;
 
     public UserProfileAboutFragment() {
         // Required empty public constructor
@@ -37,6 +39,8 @@ public class UserProfileAboutFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // auth = getArguments().getBoolean("auth");
+        if(getArguments()!=null)
+        bio.setText(getArguments().getString("bio"));
         FlowLayout interestsSpan = (FlowLayout) view.findViewById(R.id.user_interests_span);
         View interest = LayoutInflater.from(getContext()).inflate(R.layout.item_interests, null, false);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

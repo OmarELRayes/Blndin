@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.android.blndin.Features.HangoutProfile.View.HangoutPostsView;
 import com.example.android.blndin.Models.PostModel;
 import com.example.android.blndin.R;
+import com.example.android.blndin.Util.Constants;
 
 import java.util.ArrayList;
 
@@ -54,14 +55,14 @@ public class HangoutProfilePostsFragment extends Fragment implements HangoutPost
         adapter = new HangoutPostsAdapter(models, getActivity());
         recyclerView.setAdapter(adapter);
         presenter =new HangoutPostsPresenterImp(getActivity(),this,adapter,models);
-        presenter.getPostsByPage("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangout_id);
+        presenter.getPostsByPage(Constants.TOKEN,hangout_id);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if(!recyclerView.canScrollVertically(1))
                 {
-                    presenter.getPostsByPage("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangout_id);
+                    presenter.getPostsByPage(Constants.TOKEN,hangout_id);
                 }
 
 //                isBottomReached=recyclerView.canScrollVertically(1);

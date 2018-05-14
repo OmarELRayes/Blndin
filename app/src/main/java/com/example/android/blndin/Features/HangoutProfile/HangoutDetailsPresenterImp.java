@@ -29,9 +29,7 @@ public class HangoutDetailsPresenterImp implements HangoutDetailsPresenter {
     public void getHangoutDetails(String hangoutId, Context context) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         String token = SharedPreferencesHelper.retrieveDataFromSharedPref(context, "token");
-        Call<HangoutProfileDetailsResponse> call = apiInterface.getHangoutDetails(
-                hangoutId, token
-        );
+        Call<HangoutProfileDetailsResponse> call = apiInterface.getHangoutDetails(hangoutId, token);
         call.enqueue(new Callback<HangoutProfileDetailsResponse>() {
             @Override
             public void onResponse(Call<HangoutProfileDetailsResponse> call, Response<HangoutProfileDetailsResponse> response) {
@@ -47,5 +45,10 @@ public class HangoutDetailsPresenterImp implements HangoutDetailsPresenter {
                 view.failure(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void createSquad(String token, String hangout_id) {
+
     }
 }
