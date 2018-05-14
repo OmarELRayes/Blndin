@@ -1,5 +1,7 @@
 package com.example.android.blndin.Features.Auth.SignUp.Model;
 
+import com.example.android.blndin.Models.UserModel;
+
 /**
  * Created by LeGenÐ on 5/11/2018.
  */
@@ -39,10 +41,10 @@ public class SignUpResponse {
         return payload.getToken();
     }
 
-    private class Payload {
+    public class Payload {
         String message;
         String token;
-
+        UserModel users;
         public String getMessage() {
             return message;
         }
@@ -57,6 +59,14 @@ public class SignUpResponse {
 
         public void setToken(String token) {
             this.token = token;
+        }
+
+        public UserModel getUsers() {
+            return users;
+        }
+
+        public void setUsers(UserModel users) {
+            this.users = users;
         }
     }
 }

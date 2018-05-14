@@ -25,7 +25,7 @@ public interface AuthPresenter {
 
     public void firebaseLogin(final String uid, final String name, final String email);
 
-    public void saveToken(String token);
+    public void saveToken(String token,String name);
 
     public void onActivityResult(int requestCode, int resultCode, Intent data);
 

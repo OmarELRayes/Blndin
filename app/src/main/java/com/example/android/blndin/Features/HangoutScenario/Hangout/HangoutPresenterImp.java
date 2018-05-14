@@ -314,7 +314,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                     {
                         if(response.body().getPayload().getStatus().equals("0"))
                         {
-                            relatedMembersView.successfullResponseCheckHangout("0");
+                            relatedMembersView.successfullResponseCheckHangout("0",hangout_id);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -324,7 +324,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                         }
                         else if(response.body().getPayload().getStatus().equals("1")) {
                             //goto HangoutProfile Chat
-                            relatedMembersView.successfullResponseCheckHangout("1");
+                            relatedMembersView.successfullResponseCheckHangout("1",hangout_id);
                         }
                     }
                     else relatedMembersView.failureResponse(response.body().getStatus(),"Something error");
@@ -418,7 +418,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
     public void getRelatedMembers(String token, final RelativeLayout relativeLayout, final View customMarkerView, final ImageView imageView) {
         //request
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<RelatedMembersResponse> call = apiInterface.getRelatedMembers(token,"11.115","11.11");
+        Call<RelatedMembersResponse> call = apiInterface.getRelatedMembers(token,"31.039300","31.355490");
         call.enqueue(new Callback<RelatedMembersResponse>() {
             @Override
             public void onResponse(Call<RelatedMembersResponse> call, Response<RelatedMembersResponse> response) {
@@ -427,6 +427,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                     if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE))
                     {
                         loadMarkers(response.body().getPayload().getUsers(),customMarkerView,imageView);
+
                         slideDown(relativeLayout);
                         relativeLayout.setVisibility(View.GONE);
                         relatedMembersView.successfulResponseRelatedMembers(response.body().getStatus(),"Users Detected");
@@ -450,13 +451,15 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                 relatedMembersView.failureResponse(null, "Server Error");
             }
         });
-
-
     }
 
     @Override
     public void loadMarkers(ArrayList<UserModel> members, final View customMarkerView, final ImageView imageView) {
         for (final UserModel u : members) {
+            if(u.getUsername()!=null)
+                Log.d("username",u.getUsername());
+            Log.d("lat,lng",u.getLat()+" "+u.getLng());
+
             Glide.with(context).
                     load(u.getImage())
                     .asBitmap()

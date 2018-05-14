@@ -37,10 +37,14 @@ public class CreateSquadPresenterImp implements CreateSquadPresenter {
             @Override
             public void onResponse(Call<NormalPostResponse> call, Response<NormalPostResponse> response) {
                 //view.loginSuccessMessage(response.body().getStatus().toString());
-                if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE)) {
+                if(response.body()!=null)
+                {
+                    if (response.body().getStatus().equals(Constants.SUCCESS_RESPONSE)) {
                         view.successfulResponse("Squad Created");
-                } else
-                    view.failureResponse("Server Error "+response.body().getStatus());
+                    } else
+                        view.failureResponse("Server Error "+response.body().getStatus());
+                }
+               else  view.failureResponse("Server Error");
             }
 
             @Override

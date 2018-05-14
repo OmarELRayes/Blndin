@@ -2,8 +2,11 @@ package com.example.android.blndin.Features.HangoutScenario.Hangout;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.android.blndin.Adapters.HangoutInviteMembersAdapter;
+import com.example.android.blndin.Features.HangoutProfile.HangoutProfileFragment;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.ActivitiesResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Presenter.HangoutPresenter;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.View.RelatedMembersView;
@@ -146,10 +150,22 @@ public class HangoutFragment extends Fragment implements RelatedMembersView{
     }
 
     @Override
-    public void successfullResponseCheckHangout(String status) {
+    public void successfullResponseCheckHangout(String status,String hangout_id) {
         if(status.equals("0"))
             Toast.makeText(getActivity(),"no one accepted yet",Toast.LENGTH_SHORT).show();
-        else Toast.makeText(getActivity(),"accepted",Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(getActivity(),"accepted",Toast.LENGTH_SHORT).show();
+            HangoutProfileFragment fragment2 = new HangoutProfileFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("hangout_id",hangout_id);
+            fragment2.setArguments(bundle);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment2);
+            fragmentTransaction.commit();
+
+
+        }
     }
 
 

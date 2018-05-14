@@ -1,5 +1,7 @@
 package com.example.android.blndin.Features.Auth.Login.Model;
 
+import com.example.android.blndin.Models.UserModel;
+
 /**
  * Created by LeGenÐ on 5/11/2018.
  */
@@ -38,9 +40,10 @@ public class LoginResponse {
         return getPayload().getToken();
     }
 
-    private class Payload {
+    public class Payload {
         String message;
         String token;
+        UserModel users;
 
         public String getMessage() {
             return message;
@@ -56,6 +59,14 @@ public class LoginResponse {
 
         public void setToken(String token) {
             this.token = token;
+        }
+
+        public UserModel getUsers() {
+            return users;
+        }
+
+        public void setUsers(UserModel users) {
+            this.users = users;
         }
     }
 }

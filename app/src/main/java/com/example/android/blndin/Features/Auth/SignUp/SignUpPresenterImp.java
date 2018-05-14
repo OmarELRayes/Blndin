@@ -39,7 +39,7 @@ public class SignUpPresenterImp extends AuthPresenterImp implements SignUpPresen
     //TODO
     @Override
     public LatLng getUserLocation() {
-        return new LatLng(11.11041, 11.119187);
+        return new LatLng(31.039300, 31.355490);
     }
 
     @Override
@@ -58,14 +58,14 @@ public class SignUpPresenterImp extends AuthPresenterImp implements SignUpPresen
                 public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
 
                     if (response.body().getStatus().equals("200")) {
-                        saveToken(response.body().getToken());
+
+                        saveToken(response.body().getToken(),response.body().getPayload().getUsers().getUsername());
                         view.success(response.body().getMessage());
                         Log.d("token", "onResponse: " + response.body().getToken());
                     } else {
                         view.failure(response.body().getMessage());
                     }
                 }
-
                 @Override
                 public void onFailure(Call<SignUpResponse> call, Throwable t) {
                     view.failure(t.getMessage());

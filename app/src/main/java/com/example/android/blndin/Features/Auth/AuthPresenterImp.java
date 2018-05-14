@@ -169,7 +169,7 @@ public class AuthPresenterImp implements AuthPresenter {
                 //view.loginSuccessMessage(response.body().getStatus().toString());
                 Log.d("kappa", "onResponse: " + uid + " " + name + " " + email);
                 if (response.body().getStatus().equals("200")) {
-                    saveToken(response.body().getToken());
+                    saveToken(response.body().getToken(),response.body().getPayload().getUsers().getUsername());
                     view.success(response.body().getStatus());
                 } else
                     view.failure(response.body().getStatus() + " " + response.body().getMessage());
@@ -183,8 +183,9 @@ public class AuthPresenterImp implements AuthPresenter {
     }
 
     @Override
-    public void saveToken(String token) {
+    public void saveToken(String token,String name) {
         SharedPreferencesHelper.storeDataToSharedPref(context, token, "token");
+        SharedPreferencesHelper.storeDataToSharedPref(context, name, "username");
     }
 
     @Override
