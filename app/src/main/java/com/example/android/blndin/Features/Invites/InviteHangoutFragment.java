@@ -15,6 +15,7 @@ import com.example.android.blndin.Features.Invites.View.InviteHangoutView;
 import com.example.android.blndin.Models.InviteHangoutModel;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -50,13 +51,13 @@ public class InviteHangoutFragment extends Fragment implements InviteHangoutView
         adapter=new InvitationHangoutAdapter(getActivity(),models);
         recyclerView.setAdapter(adapter);
         presenter=new InviteHangoutPresenterImp(getActivity(),this,adapter,models);
-        presenter.getInvitesHangoutByPage(Constants.TOKEN_1);
+        presenter.getInvitesHangoutByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!recyclerView.canScrollVertically(1)) {
-                    presenter.getInvitesHangoutByPage(Constants.TOKEN_1);
+                    presenter.getInvitesHangoutByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
                 }
             }
         });

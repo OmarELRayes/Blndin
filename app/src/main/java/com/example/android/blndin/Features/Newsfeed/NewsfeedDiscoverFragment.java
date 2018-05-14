@@ -15,6 +15,7 @@ import com.example.android.blndin.Features.Newsfeed.view.NewsfeedView;
 import com.example.android.blndin.Models.NewsfeedModel;
 import com.example.android.blndin.R;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -51,13 +52,13 @@ public class NewsfeedDiscoverFragment extends Fragment implements NewsfeedView {
         adapter = new NewsfeedAdapter(models, getActivity(),false);
         recyclerView.setAdapter(adapter);
         presenter=new NewsfeedPresenterImp(getActivity(),adapter,this,models);
-        presenter.getNewsfeedsDiscoverByPage(Constants.TOKEN);
+        presenter.getNewsfeedsDiscoverByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!recyclerView.canScrollVertically(1)) {
-                    presenter.getNewsfeedsDiscoverByPage(Constants.TOKEN);
+                    presenter.getNewsfeedsDiscoverByPage(SharedPreferencesHelper.retrieveDataFromSharedPref(getActivity(),"token"));
                 }
             }
         });

@@ -48,6 +48,7 @@ import com.example.android.blndin.Retrofit.ApiClient;
 import com.example.android.blndin.Retrofit.ApiInterface;
 import com.example.android.blndin.Util.Constants;
 import com.example.android.blndin.Util.SampleMultiplePermissionListener;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 import com.example.android.blndin.Util.SingleShotLocationProvider;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -243,7 +244,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                     //request create hangout
                     //serialize users array
                     try {
-                        createHangout(Constants.TOKEN,hangout_title.getText().toString(),hangout_message.getText().toString()
+                        createHangout(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),hangout_title.getText().toString(),hangout_message.getText().toString()
                                 ,activities.get(Integer.valueOf(activity_id)).getId(),sub_activity,list_to_string(addedMembers),getAddress(centerLatlng),String.valueOf(centerLatlng.latitude),String.valueOf(centerLatlng.longitude));
                     } catch (IOException e) {
                         e.printStackTrace();

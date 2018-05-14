@@ -20,6 +20,7 @@ import com.example.android.blndin.R;
 import com.example.android.blndin.Retrofit.ApiClient;
 import com.example.android.blndin.Retrofit.ApiInterface;
 import com.example.android.blndin.Util.Constants;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -66,12 +67,12 @@ public class HangoutPostsAdapter extends RecyclerView.Adapter<HangoutPostsAdapte
             public void onClick(View v) {
                 if(postModels.get(holder.getAdapterPosition()).getIsLiked().equals("0"))
                 {
-                    setLike(Constants.TOKEN,postModels.get(holder.getAdapterPosition()).getId());
+                    setLike(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),postModels.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.fill_like);
                     postModels.get(holder.getAdapterPosition()).setIsLiked("1");
                 }
                 else {
-                    setUnlike(Constants.TOKEN,postModels.get(holder.getAdapterPosition()).getId());
+                    setUnlike(SharedPreferencesHelper.retrieveDataFromSharedPref(context,"token"),postModels.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.like);
                     postModels.get(holder.getAdapterPosition()).setIsLiked("0");
                 }
