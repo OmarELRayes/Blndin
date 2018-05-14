@@ -24,7 +24,7 @@ public class SetUserNamePresenterImp implements SetUserNamePresenter {
     }
 
     @Override
-    public void submit(String username, final Context context) {
+    public void submit(final String username, final Context context) {
         if (validate(username)) {
             ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
             Call<SetUserNameResponse> call = apiInterface.setUserName(
@@ -37,6 +37,7 @@ public class SetUserNamePresenterImp implements SetUserNamePresenter {
                         view.failed(response.body().getMessage());
                     } else {
                         Log.d("5ara", "onResponse: " + SharedPreferencesHelper.retrieveDataFromSharedPref(context, "token") + response.body().getMessage());
+                        SharedPreferencesHelper.storeDataToSharedPref(context, username, "username");
                         view.success();
                     }
                 }

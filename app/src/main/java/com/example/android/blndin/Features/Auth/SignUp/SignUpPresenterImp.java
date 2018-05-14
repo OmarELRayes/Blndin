@@ -39,7 +39,7 @@ public class SignUpPresenterImp extends AuthPresenterImp implements SignUpPresen
     //TODO
     @Override
     public LatLng getUserLocation() {
-        return new LatLng(31.039300, 31.355490);
+        return new LatLng(31.042918, 31.354877);
     }
 
     @Override
@@ -66,6 +66,7 @@ public class SignUpPresenterImp extends AuthPresenterImp implements SignUpPresen
                         view.failure(response.body().getMessage());
                     }
                 }
+
                 @Override
                 public void onFailure(Call<SignUpResponse> call, Throwable t) {
                     view.failure(t.getMessage());

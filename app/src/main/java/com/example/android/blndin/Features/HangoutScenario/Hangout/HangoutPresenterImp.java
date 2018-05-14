@@ -16,6 +16,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -67,14 +68,12 @@ import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import android.os.Handler;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -97,16 +96,16 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
     Map<Marker, UserModel> markers_users = new HashMap<>();
     ArrayList<ActivityModel> activities;
     ArrayList<UserModel> addedMembers;
-    private GoogleApiClient mGoogleApiClient;
-    private GoogleMap mMap;
     Marker m;
-    private boolean isHidden = true;
-    private MultiplePermissionsListener allPermissionsListener;
     Location lastLocation;
     LocationManager mLocationManager;
     UserModel user;
-     Dialog dialog;
+    Dialog dialog;
     LatLng centerLatlng;
+    private GoogleApiClient mGoogleApiClient;
+    private GoogleMap mMap;
+    private boolean isHidden = true;
+    private MultiplePermissionsListener allPermissionsListener;
 
     public HangoutPresenterImp(RelatedMembersView relatedMembersView, Context context, LinearLayout proceedLayout, RecyclerView.Adapter adapter, ArrayList<UserModel>addedMembers)
     {
@@ -223,13 +222,13 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                 mGoogleApiClient);
         if(lastLocation!=null)
             Toast.makeText(context, String.valueOf(lastLocation.getLatitude()) + " " + String.valueOf(lastLocation.getLongitude()), Toast.LENGTH_SHORT).show();
-     //   else Toast.makeText(context,"null",Toast.LENGTH_SHORT).show();
+        //   else Toast.makeText(context,"null",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void fillHangoutDialog(final String activity_id, final String sub_activity)
     {
-         dialog = new Dialog(context);
+        dialog = new Dialog(context);
         dialog.setContentView(R.layout.fill_hangout_dialog);
         final EditText hangout_title=(EditText)dialog.findViewById(R.id.hangout_title_dialog);
         final EditText hangout_message=(EditText)dialog.findViewById(R.id.hangout_message_dialog);
@@ -290,8 +289,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                     }
                     else
                         relatedMembersView.failureResponse(response.body().getStatus(),"Something error");
-                }
-               else  relatedMembersView.failureResponse(null, "Server Error");
+                } else relatedMembersView.failureResponse(null, "Server Error");
             }
 
             @Override
@@ -328,8 +326,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                         }
                     }
                     else relatedMembersView.failureResponse(response.body().getStatus(),"Something error");
-                }
-              else  relatedMembersView.failureResponse(null, "Server Error");
+                } else relatedMembersView.failureResponse(null, "Server Error");
             }
 
             @Override
@@ -365,17 +362,17 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
         {
 
         }
-            if(address!=null)
-                full_address+=address;
-            if(city!=null)
-                full_address+= ", "+city;
-            if(state!=null)
-                full_address+=", "+state;
-            if(country!=null)
-                full_address+=", "+country;
-       return full_address;
+        if (address != null)
+            full_address += address;
+        if (city != null)
+            full_address += ", " + city;
+        if (state != null)
+            full_address += ", " + state;
+        if (country != null)
+            full_address += ", " + country;
+        return full_address;
     }
-    
+
     @Override
     public void getActivities(String token) {
         //request
@@ -403,8 +400,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                             relatedMembersView.failureResponse(null, "Server Error "+ response.body().getStatus());
                         }
                     }
-                }
-               else   relatedMembersView.failureResponse(null, "Server Error");
+                } else relatedMembersView.failureResponse(null, "Server Error");
 
             }
 
@@ -555,7 +551,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.046141, 31.365187), 20));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.042918, 31.354877), 15));
         mMap.setOnMarkerClickListener(this);
         check_permission();
         getLocation();

@@ -17,6 +17,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -161,7 +162,7 @@ public class AuthPresenterImp implements AuthPresenter {
     public void firebaseLogin(final String uid, final String name, final String email) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<LoginResponse> call = apiInterface.firebaseLogin(
-                uid, name, email
+                uid, name, email, Double.toString(getUserLocation().latitude), Double.toString(getUserLocation().longitude)
         );
         call.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -194,5 +195,9 @@ public class AuthPresenterImp implements AuthPresenter {
             mCallbackManager.onActivityResult(requestCode, resultCode, data);
         if (twitterAuthClient != null)
             twitterAuthClient.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public LatLng getUserLocation() {
+        return new LatLng(31.042918, 31.354877);
     }
 }

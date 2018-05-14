@@ -13,18 +13,15 @@ import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.Activit
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
-
 import com.example.android.blndin.Features.Invites.Model.InviteHangoutResponse;
 import com.example.android.blndin.Features.Invites.Model.InviteSquadResponse;
+import com.example.android.blndin.Features.MyHangouts.Model.MyHangoutsResponse;
+import com.example.android.blndin.Features.MySquads.Model.MySquadsResponse;
 import com.example.android.blndin.Features.Newsfeed.model.NewsfeedResponse;
 import com.example.android.blndin.Features.Profile.Model.ProfileDetailsResponse;
 import com.example.android.blndin.Features.Profile.Model.ProfilePostsResponse;
-
-import com.example.android.blndin.Features.MyHangouts.Model.MyHangoutsResponse;
-import com.example.android.blndin.Features.MySquads.Model.MySquadsResponse;
 import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileChatResponse;
 import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileDetailsResponse;
-
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -40,7 +37,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("auth/register/firebase")
-    Call<LoginResponse> firebaseLogin(@Field("auth_id") String fbid, @Field("name") String name, @Field("email") String email);
+    Call<LoginResponse> firebaseLogin(@Field("auth_id") String auth_id, @Field("name") String name, @Field("email") String email, @Field("lat") String lat, @Field("lng") String lng);
 
     @FormUrlEncoded
     @POST("auth/register/regular")
