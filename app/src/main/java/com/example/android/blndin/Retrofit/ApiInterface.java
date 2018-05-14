@@ -1,10 +1,10 @@
 package com.example.android.blndin.Retrofit;
 
-import com.example.android.blndin.Features.HangoutProfile.Model.CommentsResponse;
 import com.example.android.blndin.Features.Auth.Login.Model.LoginResponse;
 import com.example.android.blndin.Features.Auth.SignUp.Model.SignUpResponse;
 import com.example.android.blndin.Features.Auth.SignUp.SetUserName.SetUserNameResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.AddChatMessageResponse;
+import com.example.android.blndin.Features.HangoutProfile.Model.CommentsResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileChatResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileDetailsResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfilePostsResponse;
@@ -13,11 +13,18 @@ import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.Activit
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
+
 import com.example.android.blndin.Features.Invites.Model.InviteHangoutResponse;
 import com.example.android.blndin.Features.Invites.Model.InviteSquadResponse;
 import com.example.android.blndin.Features.Newsfeed.model.NewsfeedResponse;
 import com.example.android.blndin.Features.Profile.Model.ProfileDetailsResponse;
 import com.example.android.blndin.Features.Profile.Model.ProfilePostsResponse;
+
+import com.example.android.blndin.Features.MyHangouts.Model.MyHangoutsResponse;
+import com.example.android.blndin.Features.MySquads.Model.MySquadsResponse;
+import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileChatResponse;
+import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileDetailsResponse;
+
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -139,5 +146,31 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("profile/invites/squads/decline")
     Call<NormalPostResponse>declineSquadInvite(@Field("token")String token,@Field("invite_id")String invite_id);
-//
+    
+    @FormUrlEncoded
+    @POST("hangouts/chat/create")
+    Call<AddChatMessageResponse> addHangoutChatMessage(@Field("token") String token, @Field("hangout_id") String hangout_id, @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("profile/squads")
+    Call<MySquadsResponse> getMySquads(@Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("squads/chat")
+    Call<SquadProfileChatResponse> getSquadChat(@Field("token") String token, @Field("squad_id") String squad_id, @Query("page") String page);
+
+    @FormUrlEncoded
+    @POST("squads/chat/create")
+    Call<com.example.android.blndin.Features.SquadProfile.Model.AddChatMessageResponse> addSquadChatMessage(@Field("token") String token, @Field("squad_id") String squad_id, @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("squads/details")
+    Call<SquadProfileDetailsResponse> getSquadDetails(@Field("token") String token, @Field("squad_id") String squad_id);
+
+    @FormUrlEncoded
+    @POST("profile/hangouts")
+    Call<MyHangoutsResponse> getMyHangouts(@Field("token") String token);
+
+
+
 }

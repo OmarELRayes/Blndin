@@ -8,7 +8,7 @@ import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfileCh
 
 public interface HangoutProfileChatPresenter {
 
-    void getPostsByPage(String token, String hangout_id);
+    void getMessagesByPage(String token, String hangout_id);
 
     boolean checkPages(HangoutProfileChatResponse.Paginator paginator);
 

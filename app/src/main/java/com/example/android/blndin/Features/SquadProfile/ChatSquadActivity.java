@@ -1,19 +1,23 @@
-package com.example.android.blndin;
+package com.example.android.blndin.Features.SquadProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.android.blndin.Adapters.SquadProfileChatAdapter;
-import com.example.android.blndin.Models.SquadChatModel;
+import com.example.android.blndin.Adapters.ChatAdapter;
+import com.example.android.blndin.Features.SquadProfile.Presenter.SquadProfileChatPresenter;
+import com.example.android.blndin.Features.SquadProfile.View.SquadChatView;
+import com.example.android.blndin.Models.ChatMessageModel;
+import com.example.android.blndin.R;
+import com.example.android.blndin.Util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -21,20 +25,23 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 
-public class ChatSquadActivity extends AppCompatActivity  {
+public class ChatSquadActivity extends AppCompatActivity implements SquadChatView {
     LinearLayout writing_layout;
     LinearLayout standing_layout;
     EditText writing_et,standing_et;
     String temp;
     TextView send;
     ListView messageview;
-    SquadProfileChatAdapter adapter;
-    ArrayList<SquadChatModel> models;
-    ImageView info_iv;
+    ChatAdapter adapter;
+    ArrayList<ChatMessageModel> models;
+    String squad_id, token;
+    SquadProfileChatPresenter presenter;
+    SwipeRefreshLayout refreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_squad);
+        squad_id = getIntent().getExtras().getString("squad_id");
         init();
         set_adapter();
 
@@ -99,28 +106,56 @@ public class ChatSquadActivity extends AppCompatActivity  {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.add_chat_item(new SquadChatModel(writing_et.getText().toString(),true));
-                messageview.setSelection(models.size()-1);
+                String message = writing_et.getText().toString();
+                presenter.addChatMessage(token, squad_id, message);
+                adapter.addChatMessage(new ChatMessageModel(message));
                 writing_et.setText("");
                 writing_layout.setVisibility(GONE);
                 standing_layout.setVisibility(VISIBLE);
             }
         });
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.squad_chat_refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getMessagesByPage(token, squad_id);
+            }
+        });
     }
     void set_adapter(){
-        models=new ArrayList<>();
-        models.add(new SquadChatModel("MADAFAKA",false,"Momen"));
-        models.add(new SquadChatModel("FAG,ME,?",true));
-        models.add(new SquadChatModel("Yes you!",false,"Momen"));
-        models.add(new SquadChatModel("STFU",true));
-        adapter=new SquadProfileChatAdapter(models,this);
+        token = SharedPreferencesHelper.retrieveDataFromSharedPref(this, "token");
+        models = new ArrayList<>();
+        adapter = new ChatAdapter(models, this);
         messageview.setAdapter(adapter);
-        messageview.setSelection(models.size()-1);
+        presenter = new SquadProfileChatPresenterImp(this, this, adapter, models);
+        presenter.getMessagesByPage(token, squad_id);
+        messageview.setSelection(models.size() - 1);
     }
 
     public void on_info_click(View view) {
         Intent i = new Intent(ChatSquadActivity.this, DetailsSquadActivty.class);
+        i.putExtra("squad_id", squad_id);
         this.startActivity(i);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    @Override
+    public void setFocus() {
+        messageview.setSelection(messageview.getAdapter().getCount() - 1);
+    }
+
+    @Override
+    public void success(String message) {
+
+    }
+
+    @Override
+    public void failure(String message) {
+
+    }
+
+    @Override
+    public void stopRefreshing() {
+        refreshLayout.setRefreshing(false);
     }
 }

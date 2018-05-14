@@ -22,6 +22,7 @@
             android:orientation="vertical"
             android:padding="5dp">
             <TextView
+                android:id="@+id/myhangouts_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -41,6 +42,7 @@
                     android:layout_height="15dp"
                     android:src="@drawable/pin"/>
                 <TextView
+                    android:id="@+id/myhangouts_item_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mansoura,Egypt"

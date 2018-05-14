@@ -17,6 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.android.blndin.Models.MyHangoutModel;
 import com.example.android.blndin.R;
 
@@ -27,15 +31,17 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
 
     private static final String EXTRA_TRANSITION_NAME = "transition_name";
     public static AppBarLayout appBarLayout;
-    String hangout_id="15";
+    String hangout_id, image_url;
     public HangoutProfileFragment() {
         // Required empty public constructor
     }
 
-    public static HangoutProfileFragment newInstance(MyHangoutModel item, String transitionName) {
+    public static HangoutProfileFragment newInstance(MyHangoutModel item, String transitionName, String hangout_id, String image_url) {
         HangoutProfileFragment fragment = new HangoutProfileFragment();
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_TRANSITION_NAME, transitionName);
+        bundle.putString("hangout_id", hangout_id);
+        bundle.putString("image_url", image_url);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -47,6 +53,7 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
         }
+        hangout_id = getArguments().getString("hangout_id");
     }
 
     @Override
@@ -71,8 +78,21 @@ public class HangoutProfileFragment extends Fragment implements TabLayout.OnTabS
         tableLayout.setupWithViewPager(viewPager);
         tableLayout.addOnTabSelectedListener(this);
         appBarLayout = (AppBarLayout) view.findViewById(R.id.hangoutProfile_appbar);
-        startPostponedEnterTransition();
+        Glide.with(getContext())
+                .load(image_url).listener(new RequestListener<String, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                return false;
+            }
 
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                startPostponedEnterTransition();
+                return true;
+            }
+        })
+                .error(R.drawable.kappa2)
+                .into(imageView);
     }
 
     @Override

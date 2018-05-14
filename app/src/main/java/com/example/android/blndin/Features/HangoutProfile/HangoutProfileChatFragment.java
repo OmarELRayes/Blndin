@@ -133,7 +133,7 @@ public class HangoutProfileChatFragment extends Fragment implements HangoutChatV
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.getPostsByPage(token, hangoutId);
+                presenter.getMessagesByPage(token, hangoutId);
             }
         });
     }
@@ -146,7 +146,7 @@ public class HangoutProfileChatFragment extends Fragment implements HangoutChatV
         adapter = new ChatAdapter(models, getContext());
         messageview.setAdapter(adapter);
         presenter = new HangoutProfileChatPresenterImp(getContext(), this, adapter, models);
-        presenter.getPostsByPage(token, hangoutId);
+        presenter.getMessagesByPage(token, hangoutId);
         messageview.setSelection(models.size() - 1);
     }
 

@@ -2,22 +2,14 @@ package com.example.android.blndin.Fragments;
 
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.blndin.Adapters.SquadProfileMembersAdapter;
 import com.example.android.blndin.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,8 +29,8 @@ public class SquadProfileFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new SquadProfileMembersAdapter();
-        recyclerView.setAdapter(adapter);
+        /*adapter = new SquadProfileMembersAdapter();
+        recyclerView.setAdapter(adapter);*/
 //        ViewPager viewPager = (ViewPager) v.findViewById(R.id.squadProfile_viewpager);
 //        PagerAdapter pagerAdapter = new SquadProfileAdapter(getChildFragmentManager());
 //        viewPager.setAdapter(pagerAdapter);

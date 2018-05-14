@@ -1,14 +1,14 @@
-package com.example.android.blndin.Models;
+package com.example.android.blndin.Features.MySquads.Model;
 
 /**
- * Created by LeGenÐ on 4/21/2018.
+ * Created by LeGenÐ on 5/13/2018.
  */
 
-public class MyHangoutModel {
+public class MySquadsModel {
     String id;
     String title;
     String image;
-    String address;
+    String members;
 
     public String getId() {
         return id;
@@ -34,11 +34,11 @@ public class MyHangoutModel {
         this.image = image;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMembers() {
+        return members;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMembers(String members) {
+        this.members = members;
     }
 }
