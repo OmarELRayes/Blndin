@@ -345,6 +345,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
         centerLatlng=mMap.getCameraPosition().target;
         isHidden=true;
     }
+
     String getAddress(LatLng latLng) throws IOException {
         String address="",city="",state="",country="";
         String full_address="";
@@ -374,6 +375,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                 full_address+=", "+country;
        return full_address;
     }
+    
     @Override
     public void getActivities(String token) {
         //request
@@ -470,7 +472,6 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                             m = mMap.addMarker(new MarkerOptions()
                                     .position(new LatLng(Double.valueOf(u.getLat()), Double.valueOf(u.getLng())))
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(customMarkerView, imageView, bitmap))));
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(u.getLat()), Double.valueOf(u.getLng())), 13f));
                             markers_users.put(m, u);
                         }
                     });
