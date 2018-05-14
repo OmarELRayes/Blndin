@@ -13,10 +13,18 @@ import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.Activit
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CheckHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.CreateHangoutResponse;
 import com.example.android.blndin.Features.HangoutScenario.Hangout.Model.RelatedMembersResponse;
+
+import com.example.android.blndin.Features.Invites.Model.InviteHangoutResponse;
+import com.example.android.blndin.Features.Invites.Model.InviteSquadResponse;
+import com.example.android.blndin.Features.Newsfeed.model.NewsfeedResponse;
+import com.example.android.blndin.Features.Profile.Model.ProfileDetailsResponse;
+import com.example.android.blndin.Features.Profile.Model.ProfilePostsResponse;
+
 import com.example.android.blndin.Features.MyHangouts.Model.MyHangoutsResponse;
 import com.example.android.blndin.Features.MySquads.Model.MySquadsResponse;
 import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileChatResponse;
 import com.example.android.blndin.Features.SquadProfile.Model.SquadProfileDetailsResponse;
+
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -92,6 +100,55 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("hangouts/chat/create")
+    Call<AddChatMessageResponse> addMessage(@Field("token") String token, @Field("hangout_id") String hangout_id, @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("squads/create")
+    Call<NormalPostResponse> createSquad(@Field("token")String token, @Field("hangout_id") String hangout_id,@Field("title")String title,@Field("description")String description,@Field("message")String message,@Field("image")String image);
+
+    @FormUrlEncoded
+    @POST("news-feed/discover")
+    Call<NewsfeedResponse> getDiscoverNewsfeed(@Field("token")String token,@Query("page")String page);
+
+    @FormUrlEncoded
+    @POST("news-feed/wall")
+    Call<NewsfeedResponse>getWallNewsfeed(@Field("token")String token,@Query("page")String page);
+
+    @FormUrlEncoded
+    @POST("profile/invites/hangouts")
+    Call<InviteHangoutResponse> getInvitesHangout(@Field("token")String token,@Query("page")String page);
+
+
+    @FormUrlEncoded
+    @POST("profile/invites/squads")
+    Call<InviteSquadResponse>getInvitesSquad(@Field("token")String token,@Query("page")String page);
+
+    @FormUrlEncoded
+    @POST("profile")
+    Call<ProfileDetailsResponse>getProfileDetials(@Field("token")String token);
+
+    @FormUrlEncoded
+    @POST("profile/posts")
+    Call<ProfilePostsResponse>getProfilePosts(@Field("token")String token,@Query("page")String page);
+
+    @FormUrlEncoded
+    @POST("profile/invites/hangouts/accept")
+    Call<NormalPostResponse>acceptHangoutInvite(@Field("token")String token,@Field("invite_id")String invite_id);
+
+    @FormUrlEncoded
+    @POST("profile/invites/hangouts/decline")
+    Call<NormalPostResponse>declineHangoutInvite(@Field("token")String token,@Field("invite_id")String invite_id);
+
+    @FormUrlEncoded
+    @POST("profile/invites/squads/accept")
+    Call<NormalPostResponse>acceptSquadInvite(@Field("token")String token,@Field("invite_id")String invite_id);
+
+    @FormUrlEncoded
+    @POST("profile/invites/squads/decline")
+    Call<NormalPostResponse>declineSquadInvite(@Field("token")String token,@Field("invite_id")String invite_id);
+    
+    @FormUrlEncoded
+    @POST("hangouts/chat/create")
     Call<AddChatMessageResponse> addHangoutChatMessage(@Field("token") String token, @Field("hangout_id") String hangout_id, @Field("message") String message);
 
     @FormUrlEncoded
@@ -113,6 +170,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("profile/hangouts")
     Call<MyHangoutsResponse> getMyHangouts(@Field("token") String token);
+
 
 
 }

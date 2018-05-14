@@ -48,8 +48,6 @@ public class HangoutPostsPresenterImp implements HangoutPostsPresenter {
             if(checkPages(paginator))
                 get_posts(token,hangout_id,String.valueOf(Integer.valueOf(paginator.getCurrent_page())+1));
         }
-
-
     }
 
     void get_posts(String token, String hangout_id, String page_id){

@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/invite_squad_avatar"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginEnd="10dp"
@@ -62,7 +63,7 @@
                 android:orientation="horizontal"
                 android:gravity="center">
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/accept_hangout_btn"
+                    android:id="@+id/accept_squad_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -78,7 +79,7 @@
                     fancy:fb_text="Accept"
                     fancy:fb_textColor="#FFFFFF" />
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/decline_hangout_btn"
+                    android:id="@+id/decline_squad_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"

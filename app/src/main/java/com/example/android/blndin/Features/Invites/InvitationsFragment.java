@@ -1,4 +1,4 @@
-package com.example.android.blndin.Fragments;
+package com.example.android.blndin.Features.Invites;
 
 
 import android.os.Bundle;
@@ -51,9 +51,9 @@ public class InvitationsFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new HangoutInvitationsFragment();
+                    return new InviteHangoutFragment();
                 case 1:
-                    return new SquadInvitationsFragment();
+                    return new InviteSquadFragment();
                 default:
                     return null;
             }

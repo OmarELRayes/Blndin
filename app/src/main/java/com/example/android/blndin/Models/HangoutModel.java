@@ -14,6 +14,7 @@ public class HangoutModel {
     String lng;
     String location;
     String created_at;
+    String isAdmin;
 
     public String getTitle() {
         return title;
@@ -85,5 +86,13 @@ public class HangoutModel {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

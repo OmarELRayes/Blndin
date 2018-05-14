@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.blndin.Fragments.UserProfileWallFragment">
+    tools:context="com.example.android.blndin.Features.Profile.UserProfileWallFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/user_profile_wall_recyclerview"

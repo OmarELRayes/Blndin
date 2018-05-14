@@ -243,7 +243,7 @@ public class HangoutPresenterImp implements HangoutPresenter, OnMapReadyCallback
                     //request create hangout
                     //serialize users array
                     try {
-                        createHangout("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",hangout_title.getText().toString(),hangout_message.getText().toString()
+                        createHangout(Constants.TOKEN,hangout_title.getText().toString(),hangout_message.getText().toString()
                                 ,activities.get(Integer.valueOf(activity_id)).getId(),sub_activity,list_to_string(addedMembers),getAddress(centerLatlng),String.valueOf(centerLatlng.latitude),String.valueOf(centerLatlng.longitude));
                     } catch (IOException e) {
                         e.printStackTrace();

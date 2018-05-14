@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.android.blndin.Adapters.NewsfeedAdapter;
 import com.example.android.blndin.CommentsActivity;
-import com.example.android.blndin.Features.HangoutProfile.Model.HangoutProfilePostsResponse;
 import com.example.android.blndin.Features.HangoutProfile.Model.NormalPostResponse;
 import com.example.android.blndin.Models.PostModel;
 import com.example.android.blndin.R;
@@ -68,12 +66,14 @@ public class HangoutPostsAdapter extends RecyclerView.Adapter<HangoutPostsAdapte
             public void onClick(View v) {
                 if(postModels.get(holder.getAdapterPosition()).getIsLiked().equals("0"))
                 {
-                    setLike("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",postModels.get(holder.getAdapterPosition()).getId());
+                    setLike(Constants.TOKEN,postModels.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.fill_like);
+                    postModels.get(holder.getAdapterPosition()).setIsLiked("1");
                 }
                 else {
-                    setUnlike("$2y$10$aOxpZjszXYGAD/pYvGhbe.hGwzJfwTdYCFOkkHcVYRqErVAsSUgMq",postModels.get(holder.getAdapterPosition()).getId());
+                    setUnlike(Constants.TOKEN,postModels.get(holder.getAdapterPosition()).getId());
                     holder.like_iv.setImageResource(R.drawable.like);
+                    postModels.get(holder.getAdapterPosition()).setIsLiked("0");
                 }
             }
         });
